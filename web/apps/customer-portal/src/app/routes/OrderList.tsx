@@ -1,4 +1,4 @@
-import { useGetOrdersWithBonQuery } from "@/api/customerApi";
+import { useGetOrdersQuery, OrderWithBon } from "@/api";
 import {
   Accordion,
   AccordionDetails,
@@ -17,13 +17,12 @@ import { Loading } from "@stustapay/components";
 import * as React from "react";
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
-import { Order } from "@stustapay/models";
 import { useCurrencyFormatter } from "@/hooks/useCurrencyFormatter";
 
 export const OrderList: React.FC = () => {
   const { t } = useTranslation();
   const formatCurrency = useCurrencyFormatter();
-  const { data: orders, error: orderError, isLoading: isOrdersLoading } = useGetOrdersWithBonQuery();
+  const { data: orders, error: orderError, isLoading: isOrdersLoading } = useGetOrdersQuery();
 
   if (isOrdersLoading || (!orders && !orderError)) {
     return <Loading />;
@@ -33,7 +32,7 @@ export const OrderList: React.FC = () => {
     return <Alert severity="error">{t("order.loadingError")}</Alert>;
   }
 
-  const orderTotal = (order: Order) => {
+  const orderTotal = (order: OrderWithBon) => {
     if (order.order_type !== "top_up") {
       return -order.total_price;
     }
@@ -90,7 +89,7 @@ export const OrderList: React.FC = () => {
                           <TableCell align="left">{item.product.name}</TableCell>
                           <TableCell align="right">{formatCurrency(item.product_price)}</TableCell>
                           <TableCell align="right">{item.quantity}</TableCell>
-                          <TableCell align="right">{formatCurrency(item.total_price)}</TableCell>
+                          <TableCell align="right">{formatCurrency(item.product_price + item.total_tax)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

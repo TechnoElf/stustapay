@@ -1,5 +1,5 @@
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useGetCustomerQuery } from "@/api/customerApi";
+import { useGetCustomerQuery } from "@/api";
 import { Link, Alert, Grid, Paper, Stack, Typography, AlertTitle } from "@mui/material";
 import { Loading } from "@stustapay/components";
 import * as React from "react";
@@ -72,24 +72,25 @@ export const Index: React.FC = () => {
                   {t("tagUid")}
                 </Typography>
                 <Typography component="div" variant="subtitle2">
-                  {formatUserTagUid(customer.user_tag_uid_hex)}
+                  {formatUserTagUid((customer.user_tag_uid || 0).toString(16))}
                 </Typography>
               </div>
             </Stack>
           </Paper>
         </Grid>
       </Grid>
-
-      <Grid item xs={12} sm={8}>
-        <Alert severity="info" variant="outlined" style={{ marginBottom: "1em", width: "100%" }}>
-          <Trans i18nKey="payoutInfo">
-            to get your payout
-            <Link component={RouterLink} to="/payout-info">
-              enter bank account details here
-            </Link>
-          </Trans>
-        </Alert>
-      </Grid>
+      {false && (
+        <Grid item xs={12} sm={8}>
+          <Alert severity="info" variant="outlined" style={{ marginBottom: "1em", width: "100%" }}>
+            <Trans i18nKey="payoutInfo">
+              to get your payout
+              <Link component={RouterLink} to="/payout-info">
+                enter bank account details here
+              </Link>
+            </Trans>
+          </Alert>
+        </Grid>
+      )}
 
       <Grid item xs={12} sm={8}>
         <OrderList />

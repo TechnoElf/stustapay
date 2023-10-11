@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useGetCustomerQuery } from "@/api/customerApi";
+import { useGetCustomerQuery } from "@/api";
 import { Loading, NumericInput } from "@stustapay/components";
 import { Trans, useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
