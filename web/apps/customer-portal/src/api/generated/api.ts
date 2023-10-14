@@ -91,6 +91,7 @@ export type Customer = {
   balance: number;
   vouchers: number;
   user_tag_uid: number | null;
+  user_tag_uid_hex: string | null;
   user_tag_comment?: string | null;
   restriction: ProductRestriction | null;
   tag_history: UserTagHistoryEntry[];

@@ -1,5 +1,5 @@
 export const translations = {
-  StuStaPay: "StuStaPay",
+  StuStaPay: "FSEI / StuStaPay",
   logout: "Logout",
   login: "Login",
   userTagUid: "Card ID",

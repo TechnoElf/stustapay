@@ -73,6 +73,19 @@ export const Login: React.FC = () => {
                 margin="normal"
                 required
                 fullWidth
+                type="text"
+                autoComplete="username"
+                label={t("userTagUid")}
+                name="userTagUid"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.userTagUid}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
                 autoFocus
                 type="text"
                 autoComplete="current-password"
@@ -81,19 +94,6 @@ export const Login: React.FC = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.userTagPin}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                type="text"
-                autoComplete="username"
-                label={t("userTagUid")}
-                name="userTagUid"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.userTagUid}
               />
 
               {isSubmitting && <LinearProgress />}
