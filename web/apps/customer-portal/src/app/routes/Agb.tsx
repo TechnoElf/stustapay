@@ -29,10 +29,9 @@ export const Agb = () => {
         </p>
         <p>Die detailierten Geschäftsbedingungen werden fürs konkrete System ausgewiesen.</p>
         <p>
-          Das StuStaCulum verwendet ein bargeldloses Bezahlsystem (im weiteren “StuStaPay”) in Form eines Armbandes
-          mittels NFC Chip. Der Vertrieb erfolgt im Namen und für Rechnung des Verein Kulturleben in der Studentenstadt
-          e.V. (im weiteren „VERANSTALTER“). Für die Nutzung des elektronischen Zahlungsmittels gelten im Verhältnis
-          zwischen dem Verein Kulturleben in der Studentenstadt e.V. und dem jeweiligen Chipinhaber die nachfolgenden
+          Das Galeriefest verwendet ein bargeldloses Bezahlsystem (im weiteren “StuStaPay”) in Form einer Karte
+          mittels NFC Chip. Der Vertrieb erfolgt im Namen und für Rechnung der Fachschaft Elektrotechnik und Informationstechnik e.V. (im weiteren „VERANSTALTER“). Für die Nutzung des elektronischen Zahlungsmittels gelten im Verhältnis
+          zwischen der Fachschaft Elektrotechnik und Informationstechnik e.V. und dem jeweiligen Chipinhaber die nachfolgenden
           Allgemeinen Geschäftsbedingungen.
         </p>
         <h3 id="begriffsbestimmungen">Begriffsbestimmungen:</h3>
@@ -66,7 +65,7 @@ export const Agb = () => {
         <h4 id="payout">PAYOUT</h4>
         <p>
           Als Payout wird der Vorgang bezeichnet, mittels welchem das auf die Karte bzw. Band gebuchte (Rest-)Guthaben
-          wieder vom Kunden nach dem Projekt zurückgefordert werden kann.
+          wieder vom Kunden während der Veranstaltung zurückgefordert werden kann.
         </p>
         <h4 id="beleg">BELEG</h4>
         <p>
@@ -76,8 +75,8 @@ export const Agb = () => {
         </p>
         <h4 id="uid-nummer-und-sicherheitsnummer">UID NUMMER UND SICHERHEITSNUMMER</h4>
         <p>
-          UID Nummer im Sinn dieser Richtlinie ist die 14-stellige Nummer, welche auf der Rückseite des Chips bzw. der
-          Karte aufgedruckt ist. Die Sicherheitsnummer im Sinn dieser Richtlinie ist die 6-stellige Nummer, welche auf
+          UID Nummer im Sinn dieser Richtlinie ist die 16-stellige Nummer, welche auf der Rückseite des Chips bzw. der
+          Karte aufgedruckt ist. Die Sicherheitsnummer im Sinn dieser Richtlinie ist die 8-stellige Nummer, welche auf
           der Rückseite des Chips bzw. der Karte aufgedruckt ist. Beide Nummern werden zum Login im Eventportal
           benötigt, welches Nachverfolgung der Konsumation, Online-Aufladung sowie Auszahlung des Restguthabens
           (=Payout) ermöglicht.
@@ -91,7 +90,7 @@ export const Agb = () => {
         </p>
         <h4 id="eventportal">EVENTPORTAL</h4>
         <p>
-          Die Seite pay.stustaculum.de wird vom Verein Kulturleben in der Studentenstadt e.V. betrieben. Im Eventportal
+          Die Seite pay.fsei.de wird von der Fachschaft Elektrotechnik und Informationstechnik e.V. betrieben. Im Eventportal
           ist es möglich, den jeweiligen Chip hinzuzufügen, Transaktionen und Belege abzurufen, den Chip während des
           Events zu beladen und gegebenenfalls nach der Veranstaltung einen Payout zu beantragen.
         </p>
@@ -107,8 +106,8 @@ export const Agb = () => {
             die Nutzung des Chips als Zahlungssystem gemäß den nachfolgenden Bedingungen zustande.
           </li>
           <li>
-            Der Eintrittskartenverkauf, sowie Konsumation bei Ständen ohne StuStaPay während der Veranstalung sind
-            Gegenstand gesonderter Vertragsverhältnisse mit dem VERANSTALTER oder Standbetreiber, für die gesonderte
+            Der Eintrittskartenverkauf ist
+            Gegenstand gesonderter Vertragsverhältnisse mit dem VERANSTALTER, für die gesonderte
             Allgemeine Geschäftsbedingungen (AGBs) gelten.
           </li>
           <li>
@@ -117,11 +116,11 @@ export const Agb = () => {
           </li>
           <li>
             Der Chip wird unpersonalisiert ausgestellt, kann vom Chipinhaber jedoch im „Eventportal“ unter Angabe von
-            Name und E-Mail Adresse des Chipinhabers, sowie der UID und Sicherheitsnummer des Chips registriert werden,
-            um Guthaben aufzuladen bzw. einen Online-Payout zu beantragen.
+            der UID und Sicherheitsnummer des Chips registriert werden,
+            um Guthaben aufzuladen.
           </li>
           <li>
-            Der Chip darf nicht zu gesetzeswidrigen Zwecken genutzt werden. Das Armband darf nicht weitergegeben werden.
+            Der Chip darf nicht zu gesetzeswidrigen Zwecken genutzt werden. Der Chip darf nicht weitergegeben werden.
           </li>
           <li>
             Nimmt der Chipinhaber Leistungen von Partnerunternehmen des VERANSTALTERs in Anspruch, die ebenfalls mit
@@ -132,7 +131,7 @@ export const Agb = () => {
         <h3 id="leistungsumfang">Leistungsumfang</h3>
         <ol type="1">
           <li>
-            Mit dem Armband kann der Chipinhaber an den für die Nutzung des Chips freigegebenen Veranstaltungstagen
+            Mit der Karte kann der Chipinhaber an den für die Nutzung des Chips freigegebenen Veranstaltungstagen
             innerhalb der Einsatzstätten Leistungen der angeschlossenen Akzeptanzstellen bargeldlos bezahlen. Bei jedem
             Zahlungsvorgang vermindert sich das auf dem Chip gespeicherte Guthaben um den verfügten Betrag. Nach
             Durchführung des Zahlungsvorgangs ist ein Widerruf der Zahlung ausgeschlossen.
@@ -145,7 +144,7 @@ export const Agb = () => {
         <h3 id="erwerb">Erwerb</h3>
         <ol type="1">
           <li>
-            Das Armband mit Chip ist beim VERANSTALTER an den ausgewiesenen Stellen innerhalb der Einsatzstätte
+            Die Karte mit Chip ist beim VERANSTALTER an den ausgewiesenen Stellen innerhalb der Einsatzstätte
             erhältlich. Der Chipinhaber erwirbt kein Eigentum an dem Chip. Der Chip berechtigt lediglich zur Verfügung
             über das Guthaben.
           </li>
@@ -190,13 +189,13 @@ export const Agb = () => {
             das zu diesem Zeitpunkt auf der Karte/Armband vorhandene Guthaben abgefragt werden. Der Besucher hat jedoch
             keinen konkreten Anspruch, dieses zu einer bestimmten Zeit abzufragen.
           </li>
-          <li>Der Mindestaufladebetrag beträgt 1,00€, der Höchstbetrag des Chipguthabens 150,00€.</li>
+          <li>Der Mindestaufladebetrag beträgt 1,00€, der Höchstbetrag des Chipguthabens 50,00€.</li>
           <li>Die Guthabenbeträge sind Privatvermögen und werden nicht verzinst.</li>
         </ol>
         <h3 id="belege">Belege</h3>
         <ol type="1">
           <li>
-            Alle Belege können im Eventportal (pay.stustaculum.de) online via Eingabe der UID Nummer und entsprechender
+            Alle Belege können im Eventportal (pay.fsei.de) online via Eingabe der UID Nummer und entsprechender
             Sicherheitsnummer abgerufen werden. Ist der Beleg durch verbindungstechnische Schwierigkeiten nicht sofort
             nach der Buchung online abrufbar, ist der VERANSTALTER nicht haftbar zu machen, sofern der Beleg bei
             funktionierender Internetverbindung zur Verfügung steht. Diese Zeitverzögerung muss jeweils verhältnismäßig
@@ -215,7 +214,7 @@ export const Agb = () => {
         </ol>
         <h3 id="kartenpfand">Kartenpfand</h3>
         <ol type="1">
-          <li>Das Kartenpfand beträgt 0,- Euro.</li>
+          <li>Das Kartenpfand beträgt 2,- Euro.</li>
           <li>
             Der VERANSTALTER behält sich das Recht vor, Kartenpfand zu verlangen. Sofern ein Kartenpfand vorgesehen ist,
             wird der Betrag des Kartenpfandes bei dem ersten Top-Up auf der Karte/dem Armband gesperrt und erst bei
@@ -240,13 +239,14 @@ export const Agb = () => {
             wenden bzw. den VERANSTALTER kontaktieren. Sollten dem Besucher durch erfolgte Bedienfehler Geldvorteile
             erwachsen, ist er nicht dazu autorisiert, dieses Geld auszugeben, sondern hat sich unverzüglich an einen
             ausgewiesenen Helpdesk des VERANSTALTERs zu wenden.
+            Der VERANSTALTER behält sich vor, diese Fehler, sobald sie offenkundig werden, entsprechend zu korrigieren.
           </li>
         </ol>
         <h3 id="gültigkeitsdauer">Gültigkeitsdauer</h3>
         <ol type="1">
           <li>
             Der Chip kann ab Erhalt für den ausgewiesenen Gültigkeitszeitraum für die Bezahlung bei den angeschlossenen
-            Akzeptanzstellen verwendet werden. Etwaiges Restguthaben verfällt nach dem 30.09.2023.
+            Akzeptanzstellen verwendet werden. Etwaiges Restguthaben verfällt nach dem 10.11.2023.
           </li>
         </ol>
         <h3 id="payout-rückzahlung-von-guthaben">Payout (Rückzahlung von Guthaben)</h3>
@@ -257,19 +257,10 @@ export const Agb = () => {
             sich vor, den Payout-Vorgang je nach Veranstaltung festzulegen und kurzfristig abzuändern.
           </li>
           <li>
-            Der VERANSTALTER behält sich vor, eine Auszahlung von etwaigem Chipguthaben zum Nennwert über das
-            Eventportal in Form einer Überweisung auf ein Konto anzubieten. Im Falle der Überweisung kann das
-            Chipguthaben mit angemessenen Transaktionskosten oder Bearbeitungs-/Servicegebühren belastet werden. Der
-            Überweisungszeitraum kann je nach Land mehrere Tage bis Wochen dauern. Sollte der Payout-Vorgang online
-            angeboten werden, kann dieser nur innerhalb der vom VERANSTALTER jeweils vorgegebenen Frist vorgenommen
-            werden. Nach Fristablauf ist grundsätzlich kein Payout mehr über die Online-Plattform (Eventportal) möglich.
-            Der VERANSTALTER übernimmt keine Haftung, sollte es durch falsches oder unvollständiges Ausfüllen des
-            Onlineformulars bezüglich Payout zu keiner Rückerstattung des Geldguthabens kommen.
-          </li>
-          <li>
             Der VERANSTALTER behält sich vor, eine Barauszahlung von etwaigem Chipguthaben zum Nennwert vor Ort
             anzubieten. Der VERANSTALTER behält sich das Recht vor, bei Payout vor Ort eine Bearbeitungsgebühr bzw.
-            Servicegebühr einzubehalten.
+            Servicegebühr einzubehalten. Der VERANSTALTER behält sich das Recht vor, die Rückgabe des Chips zu verlangen,
+            bevor die Auszahlung erfolgen kann.
           </li>
           <li>
             Im Falle einer Beschädigung des Speicherchips bzw. der aufgebrachten eindeutigen UID des Chips durch
@@ -286,17 +277,12 @@ export const Agb = () => {
             Betrag.
           </li>
           <li>
-            Etwaige Reklamationen hinsichtlich des Armbands können an die hierfür ausgewiesenen Stellen innerhalb der
+            Etwaige Reklamationen hinsichtlich des Chips können an die hierfür ausgewiesenen Stellen innerhalb der
             Einsatzstätte oder an den VERANSTALTER gerichtet werden.
           </li>
           <li>
             Der Chipinhaber hat bei jeder Transaktion die Höhe des Chipguthabens am Display des Zahlungsgerätes zu
             kontrollieren und gegebenenfalls sofort zu reklamieren.
-          </li>
-          <li>
-            Sollte dem Chipinhaber nachweislich Geldvorteile durch erfolgte Bedienfehler erwachsen, ist dieser
-            berechtigt, dieses Geld auszugeben. Der VERANSTALTER behält sich vor, diese Fehler, sobald sie offenkundig
-            werden, entsprechend zu korrigieren.
           </li>
         </ol>
         <h3 id="sorgfaltsanforderungen-verlust-und-missbrauch">Sorgfaltsanforderungen, Verlust und Missbrauch</h3>
@@ -308,13 +294,13 @@ export const Agb = () => {
           <li>
             Das Risiko eines Verlustes und eines vom Chipinhaber zu vertretenden Missbrauchs der Cashless-Karte/Armband
             trägt der Chipinhaber. Akzeptanz- und Rückzahlungsstellen prüfen nicht, ob der Chipinhaber rechtmäßiger
-            Besitzer der Cashless-Karte/Armband ist.
+            Besitzer der Cashless-Karte/Armband ist. Der Chipinhaber hat keinen Anspruch auf Ersatz des Chips.
           </li>
-          <li>Der Armbandinhaber kann das personalisierte Armband sperren lassen.</li>
+          <li>Der Chipinhaber kann den Chip sperren lassen.</li>
           <li>
-            Stellt der Chipinhaber eines personalisierten Armbands den Verlust oder Diebstahl selbigen, die
+            Stellt der Chipinhaber eines Chips den Verlust oder Diebstahl selbigen, die
             missbräuchliche Verwendung oder eine sonstige nicht autorisierte Nutzung der des Armbands oder der
-            Kartendaten fest, hat er sich unverzüglich im Infozelt oder beim StuStaPay service zu melden (Sperranzeige).
+            Kartendaten fest, hat er sich unverzüglich an einer Kasse zu melden (Sperranzeige).
             Dabei hat der Chipinhaber die UID Nummer anzugeben.
           </li>
           <li>Der Chipinhaber hat jeden Diebstahl oder Missbrauch unverzüglich bei der Polizei anzuzeigen.</li>
@@ -327,7 +313,7 @@ export const Agb = () => {
         <ol type="1">
           <li>Der VERANSTALTER übernimmt keine Haftung für Verlust und Diebstahl von Cashless-Karten/Armbändern.</li>
           <li>
-            Verliert der Chipinhaber seinen personalisierten Chip, wird dieser ihm gestohlen oder kommt er ihm in
+            Verliert der Chipinhaber seinen Chip, wird dieser ihm gestohlen oder kommt er ihm in
             sonstiger Weise abhanden und kommt es dadurch zu einer nicht autorisierten Chipverfügung, so haftet der
             Chipinhaber für Schäden, die bis zum Zeitpunkt der Sperranzeige verursacht werden, in Höhe seines Guthabens
             auf der Cashless-Karte/Armband, ohne dass es darauf ankommt, ob den Chipinhaber an dem Verlust oder
@@ -379,7 +365,7 @@ export const Agb = () => {
         <ol type="1">
           <li>
             Änderungen dieser AGBs werden dem Chipinhaber vor dem Zeitpunkt ihres Wirksamwerdens im Internet im
-            Eventportal (pay.stustaculum.de) mitgeteilt. Die Zustimmung des Chipinhabers gilt als erteilt, wenn er seine
+            Eventportal (pay.fsei.de) mitgeteilt. Die Zustimmung des Chipinhabers gilt als erteilt, wenn er seine
             Ablehnung nicht vor dem Zeitpunkt des Wirksamwerdens der Änderungen angezeigt hat. Auf diese
             Genehmigungswirkung wird ihn der VERANSTALTER bei der Bekanntgabe besonders hinweisen.
           </li>
