@@ -5,12 +5,12 @@
 \usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{datetime}
-\usepackage{libertine}
+%\usepackage{libertine}
 \usepackage{ngerman}
 \usepackage{fancyhdr}
-\usepackage{xpatch}
-\usepackage[forget]{qrcode}
-\usepackage{seqsplit}
+%\usepackage{xpatch}
+%\usepackage[forget]{qrcode}
+%\usepackage{seqsplit}
 
 \usepackage{avant} %use helvetica?
 
@@ -28,10 +28,10 @@
  %Thanks, Ulrike: https://github.com/u-fischer/putfenc
  \makeatletter
 %qrcode wird gepatcht, damit es zur anderen Kodierung wechselt:
-\xpatchcmd\qrcode@i{\begingroup}{\begingroup\fontencoding{PUTF}\fontfamily{pdf}\selectfont}{}{\show\failed}
+%\xpatchcmd\qrcode@i{\begingroup}{\begingroup\fontencoding{PUTF}\fontfamily{pdf}\selectfont}{}{\show\failed}
 
 % Unterdrücken der aux-Ausgabe:
-\def\qr@writebinarymatrixtoauxfile#1{}%
+%\def\qr@writebinarymatrixtoauxfile#1{}%
 \makeatother
 
 \DeclareFontFamily{PUTF}{pdf}{}%
@@ -137,22 +137,25 @@
         \BLOCK[if order.signature_status == "done"]
         Transaktionsnummer: & \VAR[order.tse_transaction|latex] \\
         Signaturzähler:     & \VAR[order.tse_signaturenr|latex] \\
-        Signatur:           & \seqsplit{\VAR[order.tse_signature|latex]} \\
+	Signatur:           & \VAR[order.tse_signature|latex] \\
+	%Signatur:           & \seqsplit{\VAR[order.tse_signature|latex]} \\
         Start-Zeit:         & \VAR[order.tse_start|latex] \\
         Stop-Zeit:          & \VAR[order.tse_end|latex] \\
-        Public-Key          & \seqsplit{\VAR[order.tse_public_key|latex]} \\
+        Public-Key          & \VAR[order.tse_public_key|latex] \\
+        %Public-Key          & \seqsplit{\VAR[order.tse_public_key|latex]} \\
         Hash-Algorithmus:   & \VAR[order.tse_hashalgo|latex] \\
         Zeitformat:         & \VAR[order.tse_time_format|latex] \\
-        %QR-Code             & \VAR[order.tse_qr_code_text|latex] \\
+        QR-Code             & \VAR[order.tse_qr_code_text|latex] \\
         \BLOCK[else]
         TSE                 & ausgefallen \\
         \BLOCK[endif]
     \end{tabular*}
 
     \vspace{1em}
-    \qrset{height=3cm}
-    \color{bgcolor}
-    \fcolorbox{textcolor}{textcolor}{\qrcode[nolinks]{\VAR[order.tse_qr_code_text|latex]}}
+    \vspace{3cm}
+    %\qrset{height=3cm}
+    %\color{bgcolor}
+    %\fcolorbox{textcolor}{textcolor}{\qrcode[nolinks]{\VAR[order.tse_qr_code_text|latex]}}
     \end{center}
 
 \end{document}
