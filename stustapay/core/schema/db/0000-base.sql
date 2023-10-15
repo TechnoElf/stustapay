@@ -366,33 +366,50 @@ create table if not exists user_to_role (
 create or replace function user_to_role_updated() returns trigger as
 $$
 <<locals>> declare
-    role_name text;
-    user_login text;
-    cashier_account_id bigint;
+    role_privileges      text[];
+    user_login           text;
+    cashier_account_id   bigint;
     transport_account_id bigint;
 begin
-    select name into locals.role_name from user_role where id = NEW.role_id;
+    select
+        ur.privileges
+    into locals.role_privileges
+    from
+        user_role_with_privileges ur
+    where
+        id = NEW.role_id;
 
     select
         usr.cashier_account_id,
         usr.transport_account_id,
         usr.login
-        into locals.cashier_account_id, locals.transport_account_id, locals.user_login
-    from usr where id = NEW.user_id;
+    into locals.cashier_account_id, locals.transport_account_id, locals.user_login
+    from
+        usr
+    where
+        id = NEW.user_id;
 
-    if locals.role_name = 'cashier' then
+    if 'can_book_orders' = any (locals.role_privileges) then
         if locals.cashier_account_id is null then
-            insert into account (type, name)
-            values ('internal', 'cashier account for ' || locals.user_login)
+            insert into account (
+                type, name
+            )
+            values (
+                'internal', 'cashier account for ' || locals.user_login
+            )
             returning id into locals.cashier_account_id;
 
             update usr set cashier_account_id = locals.cashier_account_id where id = NEW.user_id;
         end if;
     end if;
-    if locals.role_name = 'finanzorga' then
+    if 'cashier_management' = any (locals.role_privileges) then
         if locals.transport_account_id is null then
-            insert into account (type, name)
-            values ('internal', 'transport account for ' || locals.user_login)
+            insert into account (
+                type, name
+            )
+            values (
+                'internal', 'transport account for ' || locals.user_login
+            )
             returning id into locals.transport_account_id;
 
             update usr set transport_account_id = locals.transport_account_id where id = NEW.user_id;
@@ -402,7 +419,6 @@ begin
     return NEW;
 end
 $$ language plpgsql;
-
 
 drop trigger if exists user_to_role_updated_trigger on user_to_role;
 create trigger user_to_role_updated_trigger
