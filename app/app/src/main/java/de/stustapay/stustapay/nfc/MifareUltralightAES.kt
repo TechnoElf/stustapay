@@ -51,7 +51,7 @@ class MifareUltralightAES(private val rawTag: Tag) : TagTechnology {
         sessionKey = genSessionKey(key, rndA, rndB)
         sessionCounter = 0u
 
-        val readBuffer = cmdRead(0x00u, sessionKey!!, sessionCounter!!, nfcaTag)
+        val readBuffer = cmdRead(0x10u, sessionKey!!, sessionCounter!!, nfcaTag)
         sessionCounter = (sessionCounter!! + 2u).toUShort()
 
         var ser = 0uL
