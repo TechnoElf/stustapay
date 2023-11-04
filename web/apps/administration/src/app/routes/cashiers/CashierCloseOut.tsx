@@ -262,7 +262,7 @@ export const CashierCloseOut: React.FC = () => {
                 label={t("closeOut.closingOutUser")}
                 value={values.closingOutUserId}
                 onBlur={handleBlur}
-                filterRole="finanzorga"
+                filterRole="finanzer"
                 onChange={(val) => setFieldValue("closingOutUserId", val)}
                 error={touched.closingOutUserId && !!errors.closingOutUserId}
                 helperText={(touched.closingOutUserId && errors.closingOutUserId) as string}
