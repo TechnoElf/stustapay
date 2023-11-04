@@ -89,7 +89,7 @@ export const OrderList: React.FC = () => {
                           <TableCell align="left">{item.product.name}</TableCell>
                           <TableCell align="right">{formatCurrency(item.product_price)}</TableCell>
                           <TableCell align="right">{item.quantity}</TableCell>
-                          <TableCell align="right">{formatCurrency(item.product_price + item.total_tax)}</TableCell>
+                          <TableCell align="right">{formatCurrency(item.product_price * item.quantity)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
