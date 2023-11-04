@@ -1,0 +1,465 @@
+%% fseiprotokoll.sty
+%% Makros für Protokolle der FSEI
+%% (c) 2008 Fachschaft Elektro- und Informationstechnik
+%%
+%% Last Changes
+%% 2008-01-19, Jonas Bähr
+%%    erste Version
+%%
+\ProvidesPackage{fseiprotokoll}[2008/01/19 v0.1 FSEI protocol macros by Jonas Baehr, Florian Wilde and Matthias Styrsky]
+\typeout{Package 'fseiprotokoll' (c) 2008-2015 Fachschaft EI, TUM}
+\typeout{}
+
+\usepackage{minitoc}
+\usepackage{tabularx}
+\usepackage{xifthen}
+\usepackage[export]{adjustbox}
+\usepackage{multido}
+%\usepackage{forloop}
+\usepackage{caption}
+\usepackage{graphicx}
+%\usepackage{ulem}
+
+
+% dieser Switch definiert ob es sich um ein internes oder öffentliches Protokoll handelt
+\newif\if@fseiintern \@fseiinternfalse
+% sucht nach dem Suffix des jobnamens und gibt ihn zurück (wenn gefunden, sonst leer)
+% modifizierte Version von Heiko <oberdiek@uni-freiburg.de> http://www.meinews.net/problem-t26170.html
+\def\@suffix@intern{_intern} % der Suffix nach dem gesucht wird
+\@onelevel@sanitize\@suffix@intern
+\def\jobnamesuffix{%
+\expandafter\expandafter\expandafter\@jobnamesuffix\expandafter\jobname\@suffix@intern\@nil
+}
+\expandafter\def\expandafter\@jobnamesuffix\expandafter#\expandafter1\@suffix@intern#2\@nil{#2}
+
+% wenn der suffix nicht gefunden ist, ist \jobnamesuffix leer.
+% d. h. es ist ein öffentliches Protokoll und wir tun gar nichts (\relax)
+\if\jobnamesuffix\empty
+  \relax
+\else
+  % Suffix wurde gefunden => internes Protokoll
+  \@fseiinterntrue
+\fi
+
+% dieser switch definiert ob es sich um ein öffentliches oder ein Homepage Protokoll handelt
+\newif\if@fseihomepage \@fseihomepagefalse
+% sucht nach den suffix vom jobname und gibt ihn zurück (wenn gefunden, sonst leer)
+% modifizierte Version von Heiko <oberdiek@uni-freiburg.de> http://www.meinews.net/problem-t26170.html
+\def\@suffix@homepage{_homepage} % der Suffix nach dem gesucht wird
+\@onelevel@sanitize\@suffix@homepage
+\def\jobnamesuffix{%
+\expandafter\expandafter\expandafter\@jobnamesuffix\expandafter\jobname\@suffix@homepage\@nil
+}
+\expandafter\def\expandafter\@jobnamesuffix\expandafter#\expandafter1\@suffix@homepage#2\@nil{#2}
+
+% wenn der Suffix nicht gefunden ist, ist \jobnamesuffix leer.
+% d. h. es ist ein öffentliches Protokoll und wir tun gar nichts (\relax)
+\if\jobnamesuffix\empty
+  \relax
+\else
+  % Suffix wurde gefunden => Hompage Protokoll
+  \@fseihomepagetrue
+\fi
+
+\newcommand{\@infoitem}[1]{
+    {\large\raggedright{#1}}
+}
+
+% erstellt eine Box mit Info zum Protokoll
+%
+% Parameter:
+% #1 Ort der Versammlung
+% #2 Uhrzeit im Format hh:mm
+% #3 Name der Sitzungsleitung
+% #4 Name des Protokollanten
+% #5 Option zur Anzeige der Protokollakzeptanz
+%
+% Benutzung;
+% \protokollinfo{<Ort>}{<Zeit>}{<Leiter>}{<Protokollant>}{true/false}
+\newcommand{\protokollinfo}[5]{
+  \begin{tabularx}{\linewidth}{|X|X|}
+   \hline
+   {\footnotesize Ort} & {\footnotesize Sitzungsleitung} \\
+   \@infoitem{#1} & \@infoitem{#3} \\
+   \hline
+   {\footnotesize Zeit} & {\footnotesize Protokollant} \\
+       \@infoitem{#2 Uhr} & \@infoitem{#4} \\
+   \hline
+    \if #5\@empty
+        \relax
+    \else
+        {\footnotesize Angenommen am} & {\footnotesize Unterschrift Vorstand/Sitzungsleitung} \\
+        & \\
+        \hline
+    \fi
+   \end{tabularx}
+   \begin{center}Zuletzt geändert am \today\end{center}
+}
+
+\newcommand{\tagesordnung}{
+  % TODO Vernünftige Tagesordnung ausgeben und nicht die TOC missbrauchen
+  \@ifundefined{chapter}{
+    \setcounter{tocdepth}{1} % nur eine Ebene, section
+    \renewcommand{\contentsname}{Tagesordnung}
+    \tableofcontents
+  }{
+    % Sektionen im Inhaltsverzeichnis wie Kapitel darstellen
+    \let\l@section=\l@chapter
+    \section*{Tagesordnung}
+    \bgroup
+    % neutralisieren aller von minitoc eingefügten Befehle, wie wollen nur \contentsline
+    % und lassen \l@section die Formatierung übernehmen.
+    \renewcommand\reset@font{}
+    \renewcommand\mtcSfont{}
+    \renewcommand\mtc@string{}
+    \c@tocdepth=1 % nur 1 heist chapter und section, die datei sollte aber nur section enthalten
+    \makeatletter % sonst wird das @ ausgegeben und nicht als Buchstabe des Befehls interpretiert
+    \@input{\jobname.mtc\thechapter}
+    \egroup
+  }
+}
+
+% Generelle Einleitung eines Protokolls
+% 1. Titel des Dokuments
+% 2. Kurztitel für Eintrag ins Verzeichniss von Protokollsammlungen
+% 3. Ort
+% 4. Datum / Zeit
+% 5. Sitzungsleitung
+% 6. Protokollant
+% 7. Option zur Protokollannahme und Unterschrift
+\newcommand{\fseiprotokoll}[7]{
+  % important: load fseipage before fseiprotokoll
+  \fseititlepage
+  \@ifundefined{chapter}{
+    \fseititle{#1}
+  }{
+    % Wenn chapter definiert ist (z. B. report Klasse, nicht aber in artile) wird das
+    % aktuelle Protokoll als Kapitel gefürt. Das ermöglicht schöne Protokollsammlungen
+    % counter erhöhen
+    \stepcounter{chapter}
+    \hyperdef{chapter}{\arabic{chapter}}{\fseititle{#1}}
+    % und ab ins Inhaltsverzeichnis
+    \makeatletter
+    \def\@currentHref{chapter.\arabic{chapter}}
+    \addcontentsline{toc}{chapter}{#2}
+  }
+  \protokollinfo{#3}{#4}{#5}{#6}{#7} % Infotabelle mit Ort, Zeit, Sitzungsleitung und Protokollant
+
+  \tagesordnung
+  \clearpage
+}
+
+% Erstellt eine Titelseite mit Titel und einer Infotabelle über Ort, Zeit,
+% Leitung und Protokollant. Mit diesem Befehl sollte das Protokoll eingeleitet
+% werden. Der Befehl nimmt folgende Parameter an:
+% 1. Ort
+% 2. Datum
+% 3. Zeit
+% 4. Sitzungsleitung
+% 5. Protokollant
+\newcommand{\fseiMVeinladung}[5]{
+  \fseiprotokoll{Einladung zur Mitgliederversammlung am #2}
+      {Mitgliederversammlung am #2}
+      {#1}{#2 #3}{#4}{#5}{true}
+}
+\newcommand{\fseiMVprotokoll}[5]{
+  \fseiprotokoll{Protokoll der Mitgliederversammlung vom #2}
+      {Mitgliederversammlung vom #2}
+      {#1}{#2 #3}{#4}{#5}{true}
+}
+\newcommand{\fseiSonderMVprotokoll}[5]{
+  \fseiprotokoll{Protokoll der außerordendlichen Mitgliederversammlung vom #2}
+      {Außerordendliche Mitgliederversammlung vom #2}
+      {#1}{#2 #3}{#4}{#5}{true}
+}
+\newcommand{\fseiFVVeinladung}[5]{
+  \fseiprotokoll{Einladung zur Fachschaftsvollversammlung am #2}
+      {Fachschaftsvollversammlung am #2}
+      {#1}{#2 #3}{#4}{#5}{true}
+}
+\newcommand{\fseiFVVprotokoll}[5]{
+  \fseiprotokoll{Protokoll der Fachschaftsvollversammlung vom #2}
+      {Fachschaftsvollversammlung vom #2}
+      {#1}{#2 #3}{#4}{#5}{true}
+}
+\newcommand{\fseiSonderFVVprotokoll}[5]{
+  \fseiprotokoll{Protokoll der außerordendlichen Fachschaftsvollversammlung vom #2}
+      {Außerordendliche Fachschaftsvollversammlung vom #2}
+      {#1}{#2 #3}{#4}{#5}{true}
+}
+% 6. Name der AG, z. B. Druck AG
+\newcommand{\fseiAGProtokoll}[6]{
+  \fseiprotokoll{Protokoll der #6 Sitzung vom #2}
+      {#6 Sitzung vom #2}
+      {#1}{#2 #3}{#4}{#5}
+          {\@empty} % keine Protokollannahme nötig
+}
+
+
+% Erstellt ein Tagesordnungspunkt. Dieses Makro ist nur ein Wrapper zur Unterscheidung
+% zwischen \fseitop* und \fseitop. Genaueres in \@fseitopStar und \@fseitopNoStar
+\newcommand{\fseitop}{
+  \@ifstar{\@fseitopStar}{\@fseitopNoStar}
+}
+
+% helper für Tagesordnungspunkte
+% 1. parameter: Das kommt ins Verzeichnis
+% 2. parameter: Das wird angezeigt
+\newcommand{\@fseitop}[2]{
+  % \thesection setzt normalerweise keinen Punkt hinter die Nummer. Auch würde die
+  % Kapitelnummer vorangestellt wenn eine Protokollsammlung gesetzt wird.
+  \renewcommand\thesection{\arabic{section}.~}
+  \@ifundefined{chapter}{
+    % Für Einzelprotokolle
+    % scrartcl setzt hier zusätzlichen Leerraum, den ich nicht haben möchte
+    \section[#1]{\hspace{-0.5em}#2}
+  }{
+    % Für Protokollsammlungen
+    \section[#1]{#2}
+  }
+}
+
+% erstellt einen neuen Tagesordnungspunkt ohne Uhrzeit
+% 1. optionaler parameter: Referen (= Name des Vortragenden)
+% 1. parameter: Thema (= Name des TOPs)
+\newcommand{\@fseitopNoStar}[2][\@empty]{
+  \ifx #1\@empty
+    \@fseitop{#2}{#2}
+  \else
+    \@fseitop{#2}{#2 (#1)}
+  \fi
+}
+% erstellt einen neuen Tagesordnungspunkt mit Uhrzeit
+% 1. optionaler parameter: Referen (= Name des Vortragenden)
+% 1. parameter: Uhrzeit
+% 2. parameter: Thema (= Name des TOPs)
+\newcommand{\@fseitopStar}[3][\@empty]{
+  \ifx #1\@empty
+    \@fseitop{#3}{[#2] #3}
+  \else
+    \@fseitop{#3}{[#2] #3 (#1)}
+  \fi
+}
+
+% Beitragsliste ist eine Umgebung für Beiträge, z. B. für die Berichte der AG's
+% unter dem TOP Berichte
+%\newif\if@inbeitragsliste % switch zum überprüfen ob wir in einer Beitragslistenumgebung sind, TODO
+\newenvironment{beitragsliste}{
+  % Befehle die zu Begin ausgeführt werden
+  %\inbeitragslistetrue
+  \begin{list}{\textbullet}{
+    \setlength\leftmargini{1.5em}
+    \setlength\rightmargin{0pt}
+    \setlength\itemsep{0.5em}
+    \setlength\parsep{0pt}
+  }
+}{
+  % Befehle die am Ende ausgeführt werden
+  %\inbeitragslistefalse
+  \end{list}
+}
+
+% Ein Beitrag in einer Beitragsliste, z. B. ein Bericht zu "Berichte"
+% Der Paremeter wird als Thema interpretiert. Gibt es ein optionalen Parameter
+% wird dieser als Referent interpretiert und in Klammern angehängt
+% Für die eigentliche Darstellung siehe \@beitrag
+% in der *-variante gibt's kein Zeilenumbruch
+\newif\if@beitraginline % wenn false wird noch "\par\noindent" an die erste Beitragszeile gehängt
+\newcommand{\beitrag}{
+  % Wichtig: \@ifstar liest das erste Argument und prüft auf '*'. Dann wird je nach Existenz
+  % die eine order andere Gruppe angewendet. Da für diesen Test bereits das erste Argument
+  % eingelesen wurde, muss \@beitrag in jeder Klammer auftauchen. Stellt man es einmal nach
+  % das if, geht es verloren, bzw. der Stern wird noch mit übergeben.
+  \@ifstar{\@beitraginlinetrue\@beitrag}{\@beitraginlinefalse\@beitrag}
+}
+% helper zum Beitrag rendern
+\newcommand{\@beitrag}[2][\@empty]{
+  % TODO inbeitragsliste prüfen und bei false ein Fehler schmeißen
+  \item
+  \ifx #1\@empty
+    \if@beitraginline
+      \textbf{#2:}
+    \else
+      \textbf{#2:} \par\nobreak\noindent
+    \fi
+  \else
+    \if@beitraginline
+      \textbf{#2 (#1):}
+    \else
+      \textbf{#2 (#1):} \par\nobreak\noindent
+    \fi
+  \fi
+}
+
+% TODO Irgendwie so umbauen dass mehrzeilige Kommentare eingezogen werden
+% In etwa wie bei Theaterstücken im Reklam Verlag
+% Der Einzug folgender Zeilen ist einfach, aber wie wieder abstellen?
+\newcommand{\kommentar}[1]{
+  \par\noindent
+  \emph{#1:}
+}
+
+% Annonyme Fragen aus dem Publikum
+\newcommand{\frage}{\vspace{0.5em}\kommentar{Frage}}
+\newcommand{\antwort}{\kommentar{Antwort}}
+
+\newcommand{\fseiende}[2][der Sitzung]{
+  \vspace{1em} % eine Zeile platz
+  \par\noindent % neuer Paragraph ohne Einzug
+  Ende #1: #2 Uhr
+}
+
+% Soll zur optischen Trennung zweier Themen innerhalb eines Beitrags verwendet werden
+\newcommand{\themenwechsel}{\par\vspace{0.5em}}
+
+% liest ein .tex #1 ein und gibt den Inhalt von \begin{document} aus
+% Das ist nötig um ein eigenstandiges tex Document (mit documentclass und Prämbel) in
+% ein anderes einfühgen zu können. In diesem Fall darf nur der Inhalt der document
+% Umgebung (ohne \begin{document} und \end{document}) verwendet werden, der Rest nicht.
+% Einsatz findet dass Ganze um Sammlungen aus Einzelprotokollen zu erstellen
+\newcommand\inputdocument[1]{
+  \typeout{=== Processing #1 ===}
+  % redefine \documentclass to have no effect (we don't care about it's original definition)
+  \renewcommand\documentclass[2][\empty]{\relax}
+  % store original \input and redefine it to have no effect until \begin{document}
+  \let\originalinput=\input
+  \renewcommand\input[1]{\relax}
+  % redefine the document environment
+  % at the beginning we restore the commands we have hidden just above for the preamble
+  \let\originalenddocument\enddocument
+  \renewenvironment{document}{
+    % restore original \input
+    \let\input=\originalinput
+    \typeout{= begin included document environment =}
+  }{
+    \typeout{= end included document environment =}
+  }
+  \typeout{==== start =====}
+  \originalinput{#1}
+  \typeout{==== end =====}
+  % at the end we restore the original document end command
+  \let\enddocument\originalenddocument
+  % restore the original input
+  \let\input=\originalinput
+}
+
+% Generiert eine Protokollsammlung, anschließend müssen nurnoch
+% mittels \inputdocument die Einzelprotokolle geladen werden
+% Die verwendete Documentclass muss \chapter bereit stellen
+% 1. Parameter: Titel
+\newcommand\protokollsammlung[1]{
+  \fseititlepage
+  \vspace{2cm}
+  \fseititle{#1}
+  \vspace{2cm}
+
+  % Muss vor \tableofcontents verwendet werden! siehe minitoc Doku
+  \dominitoc % zerlegt die toc in einzelne mtc (minitoc) für die einzelnen Tagesordnungen
+
+  \protokollverzeichnis
+
+  \tableofcontents
+}
+
+% inspiriert vom shorttoc Paket
+\def\protokollverzeichnis{\bgroup
+  \makeatletter % sonst wird das @ ausgegeben und nicht als Buchstabe des Befehls interpretiert
+  \c@tocdepth=0 % nur Kapitel (entspricht den einzelnen Protokollen)
+  \@input{\jobname.toc}%
+  \global\@nobreakfalse \egroup}
+
+% Manche Protokolle enthalten Textstellen die nicht der Öffentlichkeit zugänglich gemacht
+% werden sollen, z. B. die Kandidatenbefragung bei der Vorstandswahl. Diese können mit dem
+% \fseiintern Makro gesetzt werden und erscheinen nur in der Ausgabe wenn der jobname
+% auf _intern endet.
+\newcommand\fseiintern[2][\empty]{% gibt den Plichtparameter aus wenn '_intern' Teil von \jobname ist, sonst den optionalen (default: leer)
+  \if@fseiintern
+    #2
+  \else
+    #1
+  \fi
+}
+
+\newcommand\fseinothomepage[2][\empty]{% gibt den Plichtparameter aus wenn '_intern' Teil von \jobname ist, sonst den optionalen (default: leer)
+  \if@fseihomepage
+    #1
+  \else
+    #2
+  \fi
+}
+
+% Neuer Befehl für Einschübe z. B. für Formalien wie Stimmanzahlveränderung (by Florian Wilde)
+\newlength{\einschubwidth}
+  \setlength{\einschubwidth}{\textwidth}
+  \addtolength{\einschubwidth}{-2\fboxrule}
+  \addtolength{\einschubwidth}{-2\fboxsep}
+\newlength{\einschubleft}
+  \setlength{\einschubleft}{-\textwidth}% crazy rumgerechne, damit die Box immer über die volle Textbreite geht, ohne irgendwelche Einzüge
+
+\newcommand{\einschub}[1]{
+\par\vspace{0.5em}
+\addtolength{\einschubleft}{\linewidth}
+\noindent\hspace{\einschubleft}\framebox{\parbox{\einschubwidth}{\small{#1}}}
+\addtolength{\einschubleft}{-\linewidth}
+\vspace{0.5em}
+}
+
+% Damit haben die neuen AAs nun auch ihr eigenes Kommando...
+\newcommand{\arbauf}[5][\empty]{
+  \ifthenelse{\equal{\empty}{#1}}{
+
+    \noindent\begin{tabularx}{\linewidth}{|X|X|X|}% die Leerzeile ist nötig, damit die Tabelle bei einer Aufzählung nicht eingerückt wird
+      \hline
+      \multicolumn{3}{|l|}{\footnotesize Was} \\
+      \multicolumn{3}{|l|}{#2} \\
+      \hline
+      {\footnotesize Wer} & {\footnotesize Von} & {\footnotesize Bis} \\
+      {#3} & {#4} & {#5} \\
+      \hline
+    \end{tabularx}
+    \vspace{1ex}% erstaunlich, LaTeX setzt hier tatsächlich zu wenig Abstand...
+
+  }{
+
+    \noindent\begin{tabularx}{\linewidth}{|X|X|X|}% die Leerzeile ist nötig, damit die Tabelle bei einer Aufzählung nicht eingerückt wird
+      \hline
+      \multicolumn{3}{|l|}{\footnotesize Was} \\
+      \multicolumn{3}{|l|}{#2} \\
+      \hline
+      {\footnotesize Wer} & {\footnotesize Von} & {\footnotesize Bis} \\
+      {#3} & {#4} & {#5} \\
+      \hline
+      \multicolumn{3}{|l|}{\footnotesize Status} \\
+      \multicolumn{3}{|p{0.95\linewidth}|}{#1} \\% unschöne Lösung, aber minipage will unbedingt eine Breite und ohne minipage gibts nur Einzeiler; so kann man wenigstens \newline nutzen
+      \hline
+    \end{tabularx}
+    \vspace{1ex}% erstaunlich, LaTeX setzt hier tatsächlich zu wenig Abstand...
+
+  }
+}
+
+% damit kann man schöne Anlagen samt Anlagenverzeichnis erstellen:
+\newcommand{\anlage}[2]{
+    \clearpage
+    \pdfximage{#2}
+    \renewcommand{\figurename}{Anlage}
+    \multido{\i=1+1}{\the\pdflastximagepages}{
+        \begin{figure}[ht]
+            \ifthenelse{\i=1}{\caption{#1}}{\ContinuedFloat \caption{#1 (Seite {\i})}}
+            \centering
+            \includegraphics[page=\i, max height=0.95\textheight, max width=\textwidth, frame]{#2}
+            \ifthenelse{\i=1}{\addcontentsline{toc}{section}{Anlage \thefigure{}: #1}}{}
+        \end{figure}
+        }
+    }
+\newcommand{\anlagen}{
+    \setcounter{figure}{0}
+    \renewcommand{\thefigure}{\arabic{figure}}
+    \clearpage
+    \begingroup
+        \let\origwrite\write
+        \def\write{\immediate\origwrite}
+        \addtocontents{toc}{\protect\contentsline{part}{Anlagen}{}{}}
+    \endgroup
+    }
+

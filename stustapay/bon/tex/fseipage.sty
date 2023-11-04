@@ -1,0 +1,286 @@
+%% fseipage2.sty
+%% Kopf und Fusszeilen für Dokumente der FSEI
+%% (c) 2008-2020 Fachschaft Elektro- und Informationstechnik
+%%
+%% Last Changes
+%% 2020-04-29, Jonas Schupp
+%%    Steuernummer ersetzt durch USt-IdNr.
+%% 2013-11-23, Lukas Lischke
+%%    BLZ und KtoNr in Footnote ersetzt durch IBAN und BIC
+%% 2008-01-16, Jonas Bähr
+%%    erste Version
+%%
+\ProvidesPackage{fseipage}[2008/01/16 v0.1 FSEI headings and bottomlines by Jonas Baehr]
+\newif\if@thinhead
+\DeclareOption{thinhead}{\@thinheadtrue} % use only a thin headline
+\newif\if@letterfoot
+\newif\if@nofoot
+\DeclareOption{letterfoot}{\@letterfoottrue \@nofootfalse} % create a foot with address, contact- and bankdata
+\DeclareOption{nofoot}{\@nofoottrue \@letterfootfalse} % don't create any foot (default: pagemark)
+\newif\if@dynamichead
+\DeclareOption{dynamichead}{\@dynamicheadtrue \@thinheadtrue} % use \headmark instead of the static "Fachschft..." in the header
+% manualmark und automark werden direkt an scrlayer-scrpage weiter gereicht
+% dazu siehe auch \manualmark und \automark in der KOMA-Skript doc scrguide.pdf
+\DeclareOption{automark}{\PassOptionsToPackage{automark}{scrlayer-scrpage}}
+\DeclareOption{manualmark}{\PassOptionsToPackage{manualmark}{scrlayer-scrpage}}
+\newif\if@copymark \@copymarkfalse
+\DeclareOption{copy}{\@copymarktrue} % write a watermark "Kopie" on every page
+\newcommand{\usedlogoname}{trafo_bw.pdf}
+\DeclareOption{coloredlogo}{\renewcommand{\usedlogoname}{trafo.pdf}}
+\newif\if@assosuffix \@assosuffixtrue
+\DeclareOption{noeV}{\@assosuffixfalse}
+\ProcessOptions\relax
+
+\typeout{Package 'fseipage2' (c) 2008-2020 Fachschaft EI, TUM}
+\typeout{}
+
+% basis für fseipage
+\usepackage{scrlayer-scrpage}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{times}
+
+% sucht nach den suffix vom jobname und gibt ihn zurück (wenn gefunden, sonst leer)
+% modifizierte Version von Heiko <oberdiek@uni-freiburg.de> http://www.meinews.net/problem-t26170.html
+% gleiches findet in fseiprotokoll zum erkennen interner protokolle anwendung.
+\def\@suffix@copy{_kopie} % der suffix nach dem gesucht wird
+\@onelevel@sanitize\@suffix@copy
+\def\jobnamesuffix{%
+\expandafter\expandafter\expandafter\@jobnamesuffix\expandafter\jobname\@suffix@copy\@nil
+}
+\expandafter\def\expandafter\@jobnamesuffix\expandafter#\expandafter1\@suffix@copy#2\@nil{#2}
+
+% wenn der suffix nicht gefunden ist, ist \jobnamesuffix leer.
+% d. h. es ist ein original und wir tun gar nichts (\relax)
+\if\jobnamesuffix\empty
+  \relax
+\else
+  % suffix wurde gefunden => Kopie
+  \@copymarktrue
+\fi
+
+% draw the watermark (or not)
+\if@copymark
+  \usepackage{draftwatermark}
+  \SetWatermarkText{Kopie}
+\fi
+%ende der copy-Option
+
+% ein paar später benötigte Längen
+\newlength{\ITwd}
+\newlength{\fseiTmpWd}
+
+% Größe des Trafologos für die Titelseite
+\newlength{\largetrafoheight}
+\largetrafoheight=0.19048\paperwidth %results in 4cm on A4 paper
+
+% Großes Logo mit Name daneben
+% VORSICHT: Dieses Makro wird auch in fseibrief verwendet!!
+\def\largelogoheader{%
+  \begin{wrapfigure}{r}{0.30952\paperwidth} %results in 6.5cm on A4 paper
+    \flushright
+    \includegraphics[height=\largetrafoheight]{\usedlogoname}
+  \end{wrapfigure}
+  \fontfamily{phv}\upshape % phv is Helvetica
+  \fontsize{0.041918\paperwidth}{0.045272\paperwidth}\selectfont %results in 25 and 27pt on A4 paper
+  \settowidth{\ITwd}{Informationstechnik}
+  \parbox[t]{\textwidth}{%
+  {
+      \vspace{0.019048\paperwidth} %results in 4mm on A4 paper
+      Fachschaft\\
+      Elektrotechnik und\\
+      Informationstechnik\if@assosuffix\ e.\,V.\fi\par
+  }
+  \fontfamily{phv}
+  \fontsize{0.020121\paperwidth}{0.020121\paperwidth}\selectfont\vspace{0.0067069\paperwidth} %results in 12pt, 12pt and 4pt on A4 paper
+  \hspace{0.0016767\paperwidth}\makebox[\ITwd][s]{%results in 1pt on A4 paper
+  an der Technischen Universit\"at M\"unchen}\par
+  }
+}
+
+\newlength{\headwidth}
+% vergrößert den header um 5% gegenüber dem Text
+\headwidth=1.05\textwidth
+% und zwentriert ihn wieder durch eine verschiebung um die halbe Vergrößerung
+%\setheadwidth[-0.025\textwidth]{\headwidth}
+% besser doch keine verschiebung zur zentrierung. Sieht besser aus wen der Text bündig
+% ist und dafür das Logo etwas weiter übersteht. Passt zu dessen dreiecksform
+\setheadwidth[0pt]{\headwidth} % es scheint als ob Null explizit angegeben werden muss
+
+\defpagestyle{fseititlepage}{%
+  % Da leider nur eine dokumentweite \headerheight möglich zu sein scheint
+  % behelfen wir uns hier mit einem HACK und fügen von Hand einmalig horizontalen
+  % negativen Abstand ein der nötig ist damit das Logo und der Text in den Header
+  % "passen", aka die Oberkante korrekt ausgerichtet ist.
+  {\begin{minipage}{\headwidth}\largelogoheader\end{minipage} % Kopf gerade Seiten
+  \fseiTmpWd=\largetrafoheight
+  \addtolength{\fseiTmpWd}{-\headheight}
+  \vspace*{-\fseiTmpWd}}
+  {\begin{minipage}{\headwidth}\largelogoheader\end{minipage} % Kopf ungerade Seiten
+  \fseiTmpWd=\largetrafoheight
+  \addtolength{\fseiTmpWd}{-\headheight}
+  \vspace*{-\fseiTmpWd}}
+  {\begin{minipage}{\headwidth}\largelogoheader\end{minipage} % Kopf Einzelseiten
+  \fseiTmpWd=\largetrafoheight
+  \addtolength{\fseiTmpWd}{-\headheight}
+  \vspace*{-\fseiTmpWd}}
+}{%
+  {} % Fuß gerade Seiten
+  {} % Fuß ungerade seiten
+  {\if@letterfoot\letterfoot\fi} % Fuß Einzelseiten
+}
+
+\newcommand{\fseititlepage}{
+  % starte eine Neue Seite wenn nötig
+  \clearpage
+  % wähle Header mit großem Logo und starker Schrift
+  \thispagestyle{fseititlepage}
+  % Da leider nur eine Dokumentweite \headerheight möglich zu sein scheint
+  % behelfen wir uns hier mit einem HACK und fügen von Hand einmalig horizontalen
+  % Abstand ein der nötig ist damit der Text nicht in den Header rutscht.
+  \fseiTmpWd=\largetrafoheight
+  \addtolength{\fseiTmpWd}{-\headheight}
+  \vspace*{\fseiTmpWd}
+}
+
+% Gibt eine Überschrift ähnlich \maketitle aus
+\newcommand{\fseititle}[1]{
+  \noindent
+  \parbox{\textwidth}{%
+    \begin{center}
+      \titlefont\huge
+      #1
+      
+      \vspace{\baselineskip}
+    \end{center}
+  }
+}
+
+% Größe des Trafologos für normale Seiten
+\newlength{\normaltrafoheight}
+\normaltrafoheight=0.11905\paperwidth %results in 2.5cm on A4 paper
+
+% normales Logo mit Name daneben
+\def\normallogoheader{%
+  \fontfamily{phv}\upshape
+  \fontsize{0.033535\paperwidth}{0.033535\paperwidth}\selectfont %results in 20pt and 20pt on A4 paper
+  \settowidth{\ITwd}{und Informationstechnik}
+  \settowidth{\fseiTmpWd}{und Informationstechnik e.\,V.}
+  \parbox[b]{\fseiTmpWd}{%
+  {
+      Fachschaft Elektrotechnik\\
+      und Informationstechnik\if@assosuffix\ e.\,V.\fi\par
+  }
+  \fontfamily{phv}
+  \fontsize{0.020121\paperwidth}{0.020121\paperwidth}\selectfont\vspace{0.0033535\paperwidth} % results in 12pt, 12pt and 2pt on A4 paper
+  \hspace{0.0016767\paperwidth}\makebox[\ITwd][s]{%results in 1pt on A4 paper
+  an der Technischen Universit\"at M\"unchen}\par
+  \hspace{0.5em}
+  }
+  \hfill
+  \mbox{%
+    \includegraphics[height=\normaltrafoheight]{\usedlogoname}
+  }
+}
+
+% Größe des Trafologos für schmalen Header
+\newlength{\thintrafoheight}
+%\thintrafoheight=\headheight % Das funktioniert nur wenn \headheight != null... also nicht beim fseibrief
+\thintrafoheight=0.033333\paperwidth %results in 7mm on A4 paper
+
+% schmales Logo mit Name oder \headmark daneben
+\if@dynamichead
+  \def\displaymark{\headmark}
+\else
+  \def\displaymark{Fachschaft Elektrotechnik und Informationstechnik\if@assosuffix\ e.\,V.\fi}
+\fi
+\def\thinlogoheader{%
+  \fontfamily{phv}\upshape
+  \fontsize{0.026828\paperwidth}{0.026828\paperwidth}\selectfont %results in 16pt and 16pt on A4 paper
+  \settowidth{\fseiTmpWd}{\displaymark}
+  \parbox[b]{\fseiTmpWd}{% 'b' richtet mit dem Bild nach der Fußlinie aus
+    {\displaymark}
+    % einen wenig Platz nach unten lassen
+    % dadurch dass es ein vspace gibt, wird von LaTeX ein Zeilenabstand eingefühgt.
+    % ein ganzer Zeilenabstand ist aber zu viel, darum machen wir hier ein Teil
+    % davon wieder rückgängig. Klingt verrückt, funktioniert aber!
+    \vspace{-0.014286\paperwidth} %results in 5mm on A4 paper
+  }
+  \hfill
+  \mbox{%
+    \includegraphics[height=1.5\thintrafoheight]{\usedlogoname}
+    \hspace{0.023810\paperwidth} % schiebt das Logo etwas zur mitte. Bei dieser Größe sieht es zu weit außen scheiße aus %results in 5mm on A4 paper
+  }
+}
+
+% height of the trafologo, used later to recalculate text and header height
+\newlength{\trafoheight}
+% test if we want the thin header or the normal one
+\if@thinhead
+  \def\logoheader{\thinlogoheader}
+  \trafoheight=\thintrafoheight
+\else
+  \def\logoheader{\normallogoheader}
+  \trafoheight=\normaltrafoheight
+\fi
+
+% definiere \footer je nach Option um
+\def\footer{\hfill\pagemark\hfill} % default: pagemark, centered
+\if@letterfoot
+  \def\footer{\letterfoot}
+\fi
+\if@nofoot
+  \def\footer{}
+\fi
+
+\defpagestyle{fseiheadings}{%
+  {\leftmark\hfill} %kopf grade seiten
+  {\hfill\rightmark} %kopf ungrade seiten
+  {\begin{minipage}{\headwidth}\logoheader\end{minipage}} %kopf einzelseiten
+}{%
+  {\pagemark\hfill} %fuss grade seiten
+  {\hfill\pagemark} %fuss ungrade seiten
+  {\footer} %fuss einzelseiten
+}
+
+% set the default header style
+\pagestyle{fseiheadings}
+% addjust the height of the header 
+\fseiTmpWd=\trafoheight
+\addtolength{\fseiTmpWd}{-\headheight}
+\addtolength{\headheight}{\fseiTmpWd}
+% adjust in turn the height of the textarea
+\addtolength{\textheight}{-\fseiTmpWd}
+
+% Fußzeile mit Anschrift, Kontakt- und Bankdaten
+% VORSICHT: Dieses Makro wird auch in fseibrief verwendet!!
+\def\letterfoot{
+  \parbox[t]{\textwidth}{
+  \centering
+  \fontfamily{phv}\fontsize{0.011737\paperwidth}{0.012073\paperwidth}\upshape\selectfont %results in 7 and 7.2pt on A4 paper
+  \begin{tabular*}{\textwidth}{llllll}
+      \textbf{Briefanschrift:} &
+      Postfach, 80290 M\"unchen &
+      \textbf{Telefon:} & (089)~289~-~2\,29\,98 &
+      \textbf{Fax:} & (089)~289~-~2\,51\,40\\
+      
+      \textbf{Lieferanschrift:} &
+      Theresienstra\ss{}e 90, 80333 M\"unchen &
+      \textbf{Telefon B\"uro:} & (089)~289~-~2\,29\,60 &
+      \textbf{eMail:} & info@fs.ei.tum.de\\
+\if@assosuffix
+
+      \textbf{Bankverbindung:} &
+      \multicolumn{3}{l}{%
+%%      Stadtsparkasse M\"unchen, BLZ:~701\,500\,00, Kto.-Nr.:~901\,232\,116} & %BLZ und KtoNr vor Europaweiter umstellung auf BIC und IBAN am 1.12.2013
+      Stadtsparkasse M\"unchen, BIC: SSKMDEMMXXX, IBAN: DE97\,7015\,0000\,0901\,2321\,16} & 
+      %\textbf{St.-Nr:} &
+      \textbf{USt-IdNr.:} &
+      %143~214~10090\\
+      DE129515443\\
+\fi
+
+    \end{tabular*}
+    }
+}

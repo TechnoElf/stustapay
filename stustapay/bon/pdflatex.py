@@ -140,7 +140,7 @@ async def pdflatex(file_content: str, out_file: Path) -> Tuple[bool, str]:
         newenv = os.environ.copy()
         newenv["TEXINPUTS"] = os.pathsep.join([TEX_PATH]) + os.pathsep
 
-        latexmk = ["latexmk", "-xelatex", "-halt-on-error", main_tex]
+        latexmk = ["latexmk", "-pdflatex", "-halt-on-error", main_tex]
 
         proc = await asyncio.create_subprocess_exec(
             *latexmk,

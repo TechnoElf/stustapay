@@ -1,0 +1,417 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2023.10.22)  4 NOV 2023 20:45
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**test_bon.tex
+(./test_bon.tex
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18> (./fseibrief.cls
+Document Class: fseibrief 2008/05/22 LaTeX2e class
+Document Class 'fseibrief' (c) 2003-2020 Fachschaft EI, TUM
+
+(./dinbrief.cls
+
+Document Class/Style 'dinbrief' - Version 1.73 
+University of Karlsruhe - 2000/03/02 12:49:21 
+
+*** dinbrief: Running in LaTeX 2e mode!
+*** dinbrief: NFSS 2!
+Document Class: dinbrief 2000/03/02 LaTeX2e class
+\ka@db@tmpdima=\dimen138
+\ka@db@tmpdimb=\dimen139
+\@mainlbl=\write3
+\GZA=\dimen140
+\ltf@headheight=\dimen141
+\lts@headheight=\dimen142
+\ltf@headsep=\dimen143
+\lts@headsep=\dimen144
+\ltf@textheight=\dimen145
+\lts@textheight=\dimen146
+\ka@db@txtlmarg=\dimen147
+\addrhpos=\dimen148
+\addrvpos=\dimen149
+\addrwd=\dimen150
+\addrht=\dimen151
+\addroffset=\dimen152
+\ka@db@addrhoffs=\dimen153
+\backaddrht=\dimen154
+\reflinevpos=\dimen155
+\ufldmarkvpos=\dimen156
+\lfldmarkvpos=\dimen157
+\perfmarkvpos=\dimen158
+\ka@db@foldmarkhoffs=\dimen159
+\ka@db@perfmarkhoffs=\dimen160
+\ka@db@foldmarklen=\dimen161
+\ka@db@perfmarklen=\dimen162
+\bottomtextvpos=\dimen163
+\ka@db@headup=\dimen164
+\ka@db@vfuzz=\dimen165
+\ka@db@stdskip=\dimen166
+\ka@db@fieldwd=\dimen167
+\ka@db@fldskip=\dimen168
+\ka@db@shfldwd=\dimen169
+\ka@db@indadr=\dimen170
+\dlabelheight=\dimen171
+\dlabeltopmargin=\dimen172
+\dlabelwidth=\dimen173
+\clabelnumber=\count179
+\cspare=\count180
+\c@lt@state=\count181
+\c@letter=\count182
+\labelcount=\count183
+\c@labelgen=\count184
+\yearcnt=\count185
+\@betr=\box47
+(./dinbrief.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen174
+\Gin@req@width=\dimen175
+)
+(/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen176
+\WF@size=\dimen177
+\c@WF@wrappedlines=\count186
+\WF@box=\box48
+\WF@everypar=\toks16
+Package: wrapfig 2003/01/31  v 3.6
+) (./fseipage.sty
+Package: fseipage 2008/01/16 v0.1 FSEI headings and bottomlines by Jonas Baehr
+
+Package 'fseipage2' (c) 2008-2020 Fachschaft EI, TUM
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.sty
+Package: scrlayer-scrpage 2021/03/17 v3.33 KOMA-Script package (end user interf
+ace for scrlayer)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer.sty
+Package: scrlayer 2021/03/17 v3.33 KOMA-Script package (defining layers and pag
+e styles)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2021/03/17 v3.33 KOMA-Script package (file load hooks)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2021/03/17 v3.33 KOMA-Script package (using LaTeX hooks)
+
+
+LaTeX3 Info: Defining command \BeforeFile with sig. 'm' on line 61.
+
+
+LaTeX3 Info: Defining command \AfterFile with sig. 'm' on line 65.
+
+
+LaTeX3 Info: Defining command \BeforeClass with sig. 'm' on line 69.
+
+
+LaTeX3 Info: Defining command \BeforePackage with sig. 'm' on line 73.
+
+
+LaTeX3 Info: Defining command \AfterAtEndOfClass with sig. 'smo+m' on line 83.
+
+
+LaTeX3 Info: Defining command \AfterAtEndOfPackage with sig. 'smo+m' on line
+(LaTeX3)     93.
+
+
+LaTeX3 Info: Defining command \scrlfile@AfterClass with sig. 'smo+m' on line
+(LaTeX3)     173.
+
+
+LaTeX3 Info: Defining command \AfterClass with sig. '' on line 174.
+
+
+LaTeX3 Info: Defining command \scrlfile@AfterPackage with sig. 'smo+m' on line
+(LaTeX3)     191.
+
+
+LaTeX3 Info: Defining command \AfterPackage with sig. '' on line 192.
+
+
+LaTeX3 Info: Defining command \ReplaceInput with sig. '' on line 193.
+
+
+LaTeX3 Info: Defining command \ReplaceClass with sig. 'mm' on line 196.
+
+
+LaTeX3 Info: Defining command \ReplacePackage with sig. 'mm' on line 199.
+
+
+LaTeX3 Info: Defining command \UnReplaceInput with sig. '' on line 200.
+
+
+LaTeX3 Info: Defining command \UnReplaceClass with sig. 'm' on line 203.
+
+
+LaTeX3 Info: Defining command \UnReplacePackage with sig. 'mm' on line 206.
+
+
+LaTeX3 Info: Defining command \PreventPackageFromLoading with sig. 's+om' on
+(LaTeX3)     line 234.
+
+
+LaTeX3 Info: Defining command \StorePreventPackageFromLoading with sig. 'm' on
+(LaTeX3)     line 242.
+
+
+LaTeX3 Info: Defining command \ResetPreventPackageFromLoading with sig. '' on
+(LaTeX3)     line 247.
+
+
+LaTeX3 Info: Defining command \UnPreventPackageFromLoading with sig. 'sm' on
+(LaTeX3)     line 261.
+
+
+LaTeX3 Info: Defining command \BeforeClosingMainAux with sig. 'om' on line
+(LaTeX3)     274.
+
+
+LaTeX3 Info: Defining command \AfterReadingMainAux with sig. 'om' on line 287.
+
+
+LaTeX3 Info: Defining command \protected@immediate@write with sig. 'm+m+m' on
+(LaTeX3)     line 298.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2021/03/17 v3.33 KOMA-Script package (logo)
+)))
+Skipping: [2021/05/01] Usage of raw option list on input line 252.
+Applying: [0000/00/00] compatibility for LaTeX before 2021/05/01 on input line 
+337.
+))
+\footheight=\skip47
+Package scrlayer Info: patching LaTeX kernel macro \pagestyle on input line 216
+2.
+))
+Package scrlayer-scrpage Info: auto-selection of `pagestyleset=standard'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+\ITwd=\skip48
+\fseiTmpWd=\skip49
+\largetrafoheight=\skip50
+\headwidth=\skip51
+\normaltrafoheight=\skip52
+\thintrafoheight=\skip53
+\trafoheight=\skip54
+)) (./rechnung.sty
+Package: rechnung 2020/04/29 v3.71 BMG Rechnungs Style
+\@RCHcnt=\count187
+\@RCHsum=\count188
+\@RCHtmp=\count189
+\@RCHmwst=\count190
+\@RCHmwsti=\count191
+\@RCHmwstii=\count192
+\@RCHtmptmp=\count193
+\@RCHabschln=\count194
+\@RCHabschlb=\count195
+\@RCHabschlmwst=\count196
+\@RCHPosWidth=\dimen178
+\@RCHAnzWidth=\dimen179
+\@RCHArtnumWidth=\dimen180
+\@RCHArtWidth=\dimen181
+\@RCHEinzelWidth=\dimen182
+\@RCHGesamtWidth=\dimen183
+\@RCHwdt=\dimen184
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/03/03 3.55 The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/03/03 3.55 Babel common definitions
+\babel@savecnt=\count197
+\U@D=\dimen185
+\l@babelnohyphens=\language6
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count198
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngerman.ldf
+Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
+phy)
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthogr
+aphy)
+Package babel Info: Making " an active character on input line 122.
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/eurosym/eurosym.sty
+Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
+\@eurobox=\box49
+) (./seqsplit.sty
+Package: seqsplit 2006/08/07 v0.1 Splitting long sequences (DNA, RNA, proteins,
+ etc.) 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen186
+\ar@mcellbox=\box50
+\extrarowheight=\dimen187
+\NC@list=\toks19
+\extratabsurround=\skip55
+\backup@length=\skip56
+\ar@cellbox=\box51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip57
+\multirow@cntb=\count199
+\multirow@dima=\skip58
+\bigstrutjot=\dimen188
+) (./test_bon.aux)
+\openout1 = `test_bon.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
+2.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+<trafo_bw.pdf, id=1, 632.3625pt x 461.725pt>
+File: trafo_bw.pdf Graphic file (type pdf)
+<use trafo_bw.pdf>
+Package pdftex.def Info: trafo_bw.pdf  used on input line 20.
+(pdftex.def)             Requested size: 155.87094pt x 113.81058pt.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 2
+0.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
+)
+Overfull \hbox (194.94334pt too wide) in paragraph at lines 20--20
+[][][]  
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <7.01115> on input line 20.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.50557> not available
+(Font)              size <5> substituted on input line 20.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.50557> not available
+(Font)              size <5> substituted on input line 20.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.50557> not available
+(Font)              size <5> substituted on input line 20.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7.01115> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <4.90778> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <3.50557> on input line 20.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <7.01115> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 20.
+
+Underfull \hbox (badness 10000) in alignment at lines 20--20
+[][][][][][] 
+ []
+
+
+Overfull \hbox (3.04004pt too wide) detected at line 20
+  []  
+ []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 20.
+LaTeX Font Info:    Font shape `U/eurosym/b/n' in size <12> not available
+(Font)              Font shape `U/eurosym/bx/n' tried instead on input line 30.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 31.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3
+5.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+LaTeX Font Info:    Font shape `TS1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `TS1/ptm/b/n' tried instead on input line 38.
+ [1
+
+
+
+{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map} <./trafo_bw.
+pdf>] )
+(\end occurred when \if on line 30 was incomplete) 
+Here is how much of TeX's memory you used:
+ 4830 strings out of 480932
+ 115265 string characters out of 5906276
+ 448354 words of memory out of 5000000
+ 22022 multiletter control sequences out of 15000+600000
+ 424270 words of font info for 61 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 156i,14n,158p,412b,262s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dis
+t/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/eurosy
+m/feybr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/eurosym/feymr10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/urw/times/utmr8a.pfb>
+Output written on test_bon.pdf (1 page, 61352 bytes).
+PDF statistics:
+ 40 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+

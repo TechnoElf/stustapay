@@ -1,0 +1,146 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=latex 2023.10.22)  31 OCT 2023 02:53
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**dinbrief.ins
+(./dinbrief.ins
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18>
+(/usr/share/texlive/texmf-dist/tex/latex/base/docstrip.tex
+\blockLevel=\count179
+\emptyLines=\count180
+\processedLines=\count181
+\commentsRemoved=\count182
+\commentsPassed=\count183
+\codeLinesPassed=\count184
+\TotalprocessedLines=\count185
+\TotalcommentsRemoved=\count186
+\TotalcommentsPassed=\count187
+\TotalcodeLinesPassed=\count188
+\NumberOfFiles=\count189
+\inFile=\read2
+\inputcheck=\read3
+\off@0=\count190
+\off@1=\count191
+\off@2=\count192
+\off@3=\count193
+\off@4=\count194
+\off@5=\count195
+\off@6=\count196
+\off@7=\count197
+\off@8=\count198
+\off@9=\count199
+\off@10=\count266
+\off@11=\count267
+\off@12=\count268
+\off@13=\count269
+\off@14=\count270
+\off@15=\count271
+\@maxfiles=\count272
+\@maxoutfiles=\count273
+
+Utility: `docstrip' v2.6a <2020-07-07>
+English documentation    <2020-07-11>
+
+**********************************************************
+* This program converts documented macro-files into fast *
+* loadable files by stripping off (nearly) all comments! *
+**********************************************************
+
+********************************************************
+* No Configuration file found, using default settings. *
+********************************************************
+
+(./dinbrief.ins
+
+Generating file(s) ./dinbrief.sty ./dinbrief.cls ./dinbrief.tex ./dintab.tex ./
+brfkopf.tex ./example.tex ./brfbody.tex ./test10.tex ./test11.tex ./test12.tex 
+./testnorm.tex ./dbold.tex ./dinbrief.drv ./dinbrief.cfg 
+\openout0 = `./dinbrief.sty'.
+
+\openout1 = `./dinbrief.cls'.
+
+\openout2 = `./dinbrief.tex'.
+
+\openout3 = `./dintab.tex'.
+
+\openout4 = `./brfkopf.tex'.
+
+\openout5 = `./example.tex'.
+
+\openout6 = `./brfbody.tex'.
+
+\openout7 = `./test10.tex'.
+
+\openout8 = `./test11.tex'.
+
+\openout9 = `./test12.tex'.
+
+\openout10 = `./testnorm.tex'.
+
+\openout11 = `./dbold.tex'.
+
+\openout12 = `./dinbrief.drv'.
+
+\openout13 = `./dinbrief.cfg'.
+
+
+Processing file dinbrief.dtx (shortstyle) -> dinbrief.sty
+                             (class) -> dinbrief.cls
+                             (documentation) -> dinbrief.tex
+                             (dintab) -> dintab.tex
+                             (brfkopf) -> brfkopf.tex
+                             (example) -> example.tex
+                             (brfbody) -> brfbody.tex
+                             (test,10pt) -> test10.tex
+                             (test,11pt) -> test11.tex
+                             (test,12pt) -> test12.tex
+                             (test,norm) -> testnorm.tex
+                             (dinbriefold) -> dbold.tex
+                             (driver) -> dinbrief.drv
+                             (cfg) -> dinbrief.cfg
+File dinbrief.dtx ended by \endinput.
+Lines  processed: 7620
+Comments removed: 3439
+Comments  passed: 20
+Codelines passed: 4108
+
+***********************************************************
+*
+* To finish the installation you have to move the following
+* files into a directory searched by TeX:
+*
+*   dinbrief.cls
+*   dinbrief.sty
+*
+* To setup a standard configuration for letters, edit the
+* configuration file
+*
+*   dinbrief.cfg
+*
+* and copy it to an appropriate directory of your search
+* path for TeX input files.
+*
+* To produce the documentation run the files ending with
+* `.drv' through LaTeX.
+*
+* Happy TeXing
+***********************************************************
+
+********************************************************
+*
+* Now run LaTeX 2.09 or LaTeX 2e and enjoy the dinbrief
+*
+********************************************************
+
+) ) ) 
+Here is how much of TeX's memory you used:
+ 454 strings out of 480933
+ 4939 string characters out of 5906302
+ 291008 words of memory out of 5000000
+ 17770 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 17i,0n,15p,189b,253s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+No pages of output.

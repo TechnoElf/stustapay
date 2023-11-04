@@ -1,0 +1,418 @@
+%%
+%% This is file `rechnungman.drv',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% rechnung.dtx  (with options: `driver,manual')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from rechnungman.drv.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file rechnung.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%% File: rechnung.dtx Copyright (C) 1998 M G Berberich
+%% berberic@fmi.uni-passau.de
+
+ \ProvidesFile{rechnung.drv}
+          [2020/04/29 v3.71 BMG Rechnungs Style]
+\documentclass[draft]{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{eurosym}
+\usepackage{ngerman}
+\usepackage{rechnung}
+\begin{document}
+\DocInput{rechnung.dtx}
+\end{document}
+\newcount\@RCHcnt \newcount\@RCHsum \newcount\@RCHtmp
+\newcount\@RCHmwst \newcount\@RCHmwsti \newcount\@RCHmwstii
+\newcount\@RCHtmptmp \newcount\@RCHabschln \newcount\@RCHabschlb
+\newcount\@RCHabschlmwst
+\newdimen\@RCHPosWidth
+\newdimen\@RCHAnzWidth
+\newdimen\@RCHArtnumWidth
+\newdimen\@RCHArtWidth
+\newdimen\@RCHEinzelWidth
+\newdimen\@RCHGesamtWidth
+\@RCHPosWidth=1.3em%
+\@RCHAnzWidth=3.2em%
+\@RCHArtnumWidth=5em%
+\@RCHEinzelWidth=4.8em%
+\@RCHGesamtWidth=6.1em%
+ \newif\if@RCHeinp
+\newif\if@RCHerm
+\newif\if@RCHabschl
+\newif\if@RCHpos
+\newif\if@RCHfirst
+\newif\if@RCHhor
+\newif\if@RCHartnum
+\newif\if@RCHinit
+\newdimen\@RCHwdt
+\newcommand*\@RCHstsi{19}
+\newcommand*\@RCHstsii{7}
+\newcommand*\@RCHustsi{0}
+\newcommand*\@ArtikelPrefix{}
+\newcommand*\@AnzahlSuffix{}
+\newcommand*\@waehrung{D\kern-0.05em M}
+\newcommand*\Steuersatz[2]{\def\@RCHstsi{#1}\def\@RCHstsii{#2}}
+\newcommand*\Waehrung[1]{\def\@waehrung{#1}}
+\newcommand*\EinzelpreisEin[0]{\if@RCHinit\else\global\@RCHeinptrue\fi}
+\newcommand*\EinzelpreisAus[0]{\if@RCHinit\else\global\@RCHeinpfalse\fi}
+\newcommand*\PositionEin[0]{\if@RCHinit\else\global\@RCHpostrue\fi}
+\newcommand*\PositionAus[0]{\if@RCHinit\else\global\@RCHposfalse\fi}
+\newcommand*\TrennerEin[0]{\if@RCHinit\else\global\@RCHhortrue\fi}
+\newcommand*\TrennerAus[0]{\if@RCHinit\else\global\@RCHhorfalse\fi}
+\newcommand*\ArtikelPrefix[1]{\def\@ArtikelPrefix{#1}}
+\newcommand*\AnzahlEinheit[1]{\def\@AnzahlSuffix{\,#1}}
+\newcommand*\Euro{\def\@waehrung{\euro}}
+\newcommand*\DMark{\def\@waehrung{D\kern-0.05em M}}
+\newcommand*\Gesamtsumme{\writeCurrency\@RCHsum}
+\newcommand*\Mehrwertsteuer{\writeCurrency\@RCHmwst}
+\newcommand*\@RCHwrite[1]{
+  \@tempcnta=#1
+  \@tempcntb\@tempcnta
+  \divide\@tempcnta100 \the\@tempcnta,%
+  \multiply\@tempcnta100\advance\@tempcntb-\@tempcnta
+  \ifnum#1<0
+    \multiply\@tempcntb-1
+  \fi
+  \@tempcnta\@tempcntb\divide\@tempcnta10 \the\@tempcnta
+  \multiply\@tempcnta10\advance\@tempcntb-\@tempcnta
+  \the\@tempcntb
+}
+\newcommand*\writeCurrency[1]{\@RCHwrite{#1}\,\@waehrung}
+\newcommand*\writebfCurrency[1]{{\fontseries{b}
+  \selectfont\writeCurrency{#1}}}
+\newcommand*\@readNum[1]{\@RCHtmp=0\@readA#1\relax}
+\newcommand*\@readA[1]{%
+  \expandafter\if#1\relax\@tempcnta0\@readC\relax
+  \else\expandafter\if#1.\@tempcnta0
+  \expandafter\expandafter\expandafter\expandafter
+  \expandafter\expandafter\expandafter\@readB
+  \else\expandafter\if#1,\@tempcnta0
+  \expandafter\expandafter\expandafter\expandafter
+  \expandafter\expandafter\expandafter\@readB
+  \else\multiply\@RCHtmp10\advance\@RCHtmp#1
+  \expandafter\expandafter\expandafter\expandafter
+  \expandafter\expandafter\expandafter\@readA
+  \fi\fi\fi
+}
+\newcommand*\@readB[1]{%
+  \expandafter\if#1\relax\relax
+     \ifnum \@tempcnta > 2
+       \@RCHtmp0\PackageError{rechnung}{mehr als zwei
+       Nachkommastellen gefunden}
+     \else
+       \ifnum \@tempcnta = 2
+       \else
+         \ifnum \@tempcnta > 0
+   \advance\@tempcnta1
+           \multiply\@RCHtmp10
+   \@readB\relax
+         \else
+           \multiply\@RCHtmp100\PackageError{rechnung}{keine
+           Nachkommastellen gefunden}
+         \fi
+       \fi
+    \fi
+  \else
+     \advance\@tempcnta1
+     \multiply\@RCHtmp10
+     \advance\@RCHtmp#1\expandafter\@readB
+  \fi}
+
+\newcommand*\@readC[1]{%
+  \expandafter
+  \if#1\relax\relax
+     \ifnum \@tempcnta > 2
+       \@RCHtmp0\PackageError{rechnung}{mehr als zwei
+       Nachkommastellen gefunden}
+     \fi
+     \ifnum \@tempcnta < 2
+ \advance\@tempcnta1
+         \multiply\@RCHtmp10
+ \@readC\relax
+     \fi
+  \else
+     \advance\@tempcnta1
+     \multiply\@RCHtmp10
+     \advance\@RCHtmp#1\expandafter\@readC
+  \fi}
+\newcommand*{\writefoot}[0]{
+  \if@RCHerm
+    \nointerlineskip
+    \vskip0.5ex
+    \hbox to \textwidth{
+      \hfill\footnotesize\strut
+      $^*$ Artikel mit \@RCHstsii\,\% Mehrwertsteuer}
+  \fi}
+\newcommand*\@RCHsline[2]{%
+  \goodbreak\nointerlineskip
+  \vbox{\hrule
+    \hbox to\textwidth{%
+      \strut\lsep #1\hfil
+      \sep
+      \hbox to \@RCHGesamtWidth{\hfil#2}%
+      \rsep}%
+    \hrule\vskip-0.4pt}}
+\newcommand*\@RCHohne{
+  \@RCHsline{Gesamtsumme}{\writebfCurrency\@RCHsum}}
+\newcommand*\@RCHnetto{
+  \@RCHsline{Nettosumme}{\writeCurrency\@RCHsum}%
+  \multiply\@RCHmwsti\@RCHstsi
+  \advance\@RCHmwsti50\divide\@RCHmwsti100
+  \multiply\@RCHmwstii\@RCHstsii
+  \advance\@RCHmwstii50\divide\@RCHmwstii100
+  \@RCHmwst\@RCHmwsti\advance\@RCHmwst\@RCHmwstii
+  \if@RCHerm
+    \@RCHsline{zzgl. \@RCHstsii\,\% MwSt.}{\writeCurrency\@RCHmwstii}%
+  \fi
+  \@RCHsline{zzgl. \@RCHstsi\,\% MwSt.}{\writeCurrency\@RCHmwsti}%
+  \advance\@RCHsum\@RCHmwst
+  \hrule
+  \vskip\doublerulesep\vskip0.4pt
+  \@RCHsline{Gesamtsumme}{\writebfCurrency\@RCHsum}%
+  \if@RCHabschl
+    \vskip\doublerulesep\vskip10pt
+    \advance\@RCHabschlb\@RCHabschln
+    \advance\@RCHabschlmwst\@RCHabschln
+    \multiply\@RCHabschlmwst\@RCHstsi
+    \advance\@RCHmwsti50
+    \divide\@RCHabschlmwst100
+    \advance\@RCHabschlb\@RCHabschlmwst
+    \advance\@RCHmwst-\@RCHabschlmwst
+    \@RCHsline{Abschlagszahlung }{\writeCurrency\@RCHabschln}%
+    \@RCHsline{zzgl. \@RCHstsi\,\% MwSt. }{\writeCurrency\@RCHabschlmwst}%
+    \vskip\doublerulesep\vskip0.4pt
+    \@RCHsline{bereits gezahlt }{\writebfCurrency\@RCHabschlb}%
+    \advance\@RCHsum-\@RCHabschlb
+    \vskip\doublerulesep\vskip10pt
+    \@RCHsline{noch zu zahlen }{\writebfCurrency\@RCHsum}%
+  \fi
+  \hrule
+  \writefoot
+}
+\newcommand*\@RCHkeineUST{
+  \@RCHsline{Nettosumme}{\writeCurrency\@RCHsum}%
+  \@RCHsline{Umsatzsteuer (MwSt. nicht ausweisbar nach \S19 UStG)}{\writeCurrency\@RCHustsi}
+  \hrule
+  \vskip\doublerulesep\vskip0.4pt
+  \@RCHsline{Gesamtsumme}{\writebfCurrency\@RCHsum}%
+  \writefoot
+}
+\newcommand*\@RCHeuUST{
+  \@RCHsline{Nettosumme}{\writeCurrency\@RCHsum}%
+  \@RCHsline{Umsatzsteuer (Innergemeinschaftliche Lieferung nach Art. 6 Abs. 1 UStG)}{\writeCurrency\@RCHustsi}
+  \hrule
+  \vskip\doublerulesep\vskip0.4pt
+  \@RCHsline{Gesamtsumme}{\writebfCurrency\@RCHsum}%
+  \writefoot
+}
+\newcommand*\@RCHbrutto{
+  \@RCHsline{Gesamtsumme}{\writebfCurrency\@RCHsum}
+  \multiply\@RCHmwsti\@RCHstsi\multiply\@RCHmwsti2%
+  \@tempcnta100\advance\@tempcnta\@RCHstsi
+  \advance\@RCHmwsti\@tempcnta
+  \multiply\@tempcnta2%
+  \divide\@RCHmwsti\@tempcnta
+
+  \multiply\@RCHmwstii\@RCHstsii\multiply\@RCHmwstii2%
+  \@tempcnta100\advance\@tempcnta\@RCHstsii
+  \advance\@RCHmwstii\@tempcnta
+  \multiply\@tempcnta2%
+  \divide\@RCHmwstii\@tempcnta
+
+  \@RCHmwst\@RCHmwsti\advance\@RCHmwst\@RCHmwstii
+    \@RCHsline{inkl. \@RCHstsii\,\% erm. MwSt.}
+    {\writeCurrency\@RCHmwstii}%
+  \@RCHsline{inkl. \@RCHstsi\,\% MwSt.}{\writeCurrency\@RCHmwsti}%
+  \writefoot
+}
+
+\newcommand*{\sep}[0]{\hskip\tabcolsep\vrule\hskip\tabcolsep}
+\newcommand*{\rsep}[0]{\hskip\tabcolsep\vrule}
+\newcommand*{\lsep}[0]{\vrule\hskip\tabcolsep}
+
+\newcommand*\@RCHlineX[6]{{
+\goodbreak\nointerlineskip
+    \vbox{
+      \if@RCHhor
+\hrule
+      \else
+        \if@RCHfirst
+          \hrule
+        \fi
+      \fi
+      \hbox to\textwidth{%
+\lsep%
+        \if@RCHpos%
+           \hbox to\@RCHPosWidth{\hfil #1\strut}%
+           \sep
+        \fi% Pos-Spalte
+        \hbox to\@RCHAnzWidth{\hfil #2\strut}\sep% Anzahl-Spalte
+        \if@RCHartnum%
+          \hbox to\@RCHArtnumWidth{\hfil #3\strut}%
+          \sep%
+        \fi% Art-Num-Spalte
+        \vtop{\normalbaselines%
+           \noindent\rightskip=0pt plus1cm%
+           \hsize\@RCHwdt%
+           \linewidth\hsize#4\null\strut\par}%
+        \hfil\sep%Beschreibung
+        \if@RCHeinp
+          \hbox to\@RCHEinzelWidth{\hfil #5\strut}\sep% Einzelpreis
+        \fi
+        \hbox to\@RCHGesamtWidth{\hfil #6\strut}\rsep% Gesamtpreis
+      }%hbox
+     }%vbox
+}}
+\newcommand*\@Artikel[4][X]{\@ArtikelX[#1]{#2}{}{#3}{#4}}
+\newcommand*\@ArtikelX[5][X]{
+  \initRechnung
+  \advance\@RCHcnt1%
+  \@readNum{#5}
+  \@RCHtmptmp=\@RCHtmp%
+  \if@RCHeinp
+    \@readNum{#2}\multiply\@RCHtmp\@RCHtmptmp
+    \advance\@RCHtmp99\divide\@RCHtmp100%Aufrunden auf 2 Nachkommastellen.
+    \@lineBaseX[#1]{\the\@RCHcnt}{#2\@AnzahlSuffix}{#3}{#4}{#5\,\@waehrung}
+  \else
+    %keine Multiplikation mit Anzahl, keinen Einzelpreis ausgeben
+    \@lineBaseX[#1]{\the\@RCHcnt}{#2\@AnzahlSuffix}{#3}{#4}{}
+  \fi
+}
+\newcommand*\@Gutschrift[3][X]{\@GutschriftX[#1]{#2}{#3}}
+\newcommand*\@GutschriftX[3][X]{
+  \initRechnung
+  \advance\@RCHcnt1%
+  \@readNum{#3}
+  \multiply\@RCHtmp-1
+  \@lineBaseX[#1]{\the\@RCHcnt}{\null}{\null}{#2}{\null}
+}
+\newcommand*\@Versandkosten[2][X]{\@VersandkostenX[#1]{#2}}
+\newcommand*\@VersandkostenX[2][X]{
+  \initRechnung
+  \@readNum{#2}
+  \@lineBaseX[#1]{\null}{1}{\null}{Versandkosten}{#2\,\@waehrung}
+}
+\newcommand*\@Abschlagszahlung[2][X]{\@AbschlagszahlungX[#1]{#2}}
+\newcommand*\@AbschlagszahlungX[2][X]{
+  \initRechnung
+  \@readNum{#2}
+  \global\@RCHabschltrue
+  \global\advance\@RCHabschln\@RCHtmp
+}
+\newcommand*\@lineBaseX[6][X]{
+  \global\advance\@RCHsum\@RCHtmp
+  \@RCHlineX{\@ArtikelPrefix#2}{\@ArtikelPrefix#3}{\@ArtikelPrefix#4}{\@ArtikelPrefix#5}{\@ArtikelPrefix#6}{\@ArtikelPrefix\writeCurrency\@RCHtmp
+    \expandafter\ifx#1X\else\rlap{$^*$}\fi}
+  \expandafter
+  \ifx#1X
+    \advance\@RCHmwsti\@RCHtmp
+  \else
+    \advance\@RCHmwstii\@RCHtmp\global\@RCHermtrue
+  \fi
+  \global\@RCHfirstfalse  %horizontale Linien nur beim ersten Artikel
+}
+\newenvironment*{Rechnung}[1][X]{\RechnungStart{#1}{}}{\RechnungEnde}
+\newenvironment*{Rechnung*}[1][X]{\RechnungStart{#1}{X}}{\RechnungEnde}
+\newenvironment*{Bestellung}[0]{\RechnungStart{X}{}}{\RechnungEnde}
+\newenvironment*{Bestellung*}[0]{\RechnungStart{X}{X}}{\RechnungEnde}
+\newcommand*{\RechnungStart}[2]{
+  \@RCHinitfalse
+  \@RCHeinptrue
+  \@RCHermfalse
+  \@RCHabschlfalse
+  \@RCHmwsti0
+  \@RCHmwstii0
+  \@RCHabschln0
+  \@RCHabschlb0
+  \@RCHabschlmwst0
+  \def\@RCHtype{#1}%
+  \@RCHcnt0
+  \@RCHsum0
+  \@RCHwdt\textwidth
+  \advance\@RCHwdt-\@RCHAnzWidth    % Breite der Spalte Anz
+  \advance\@RCHwdt-\@RCHGesamtWidth % Breite der Spalte GPreis
+  \advance\@RCHwdt-2.0pt        % Breite der Spaltentrenner
+  \advance\@RCHwdt-8\tabcolsep  % Breite des Abstands zu
+                                % den Spaltentrennern
+
+  \global\@RCHfirsttrue
+  \global\@RCHpostrue
+  \global\@RCHhortrue
+\ifx#2X
+  \global\@RCHartnumtrue
+  \let\Artikel\@ArtikelX
+  \let\Posten\@ArtikelX
+  \let\Versandkosten\@VersandkostenX
+  \let\Abschlagszahlung\@AbschlagszahlungX
+  \let\Gutschrift\@GutschriftX
+\else
+  \global\@RCHartnumfalse
+  \let\Artikel\@Artikel
+  \let\Posten\@Artikel
+  \let\Versandkosten\@Versandkosten
+  \let\Abschlagszahlung\@Abschlagszahlung
+  \let\Gutschrift\@Gutschrift
+\fi
+}
+\newcommand*{\initRechnung}[0]
+{
+  \if@RCHinit
+  \else
+    \if@RCHpos
+      \advance\@RCHwdt-\@RCHPosWidth
+      \advance\@RCHwdt-0.4pt
+      \advance\@RCHwdt-2\tabcolsep
+    \fi
+    \if@RCHartnum
+      \advance\@RCHwdt-\@RCHArtnumWidth
+      \advance\@RCHwdt-0.4pt
+      \advance\@RCHwdt-2\tabcolsep
+    \fi
+    \if@RCHeinp
+      \advance\@RCHwdt-\@RCHEinzelWidth
+      \advance\@RCHwdt-0.4pt
+      \advance\@RCHwdt-2\tabcolsep
+    \fi
+
+    \vskip\abovedisplayskip
+    \@RCHlineX{\scriptsize Pos.}%
+              {\scriptsize Anzahl}%
+              {\scriptsize Art.\,Nr.}%
+              {\scriptsize Beschreibung\hfill}%
+              {\scriptsize Einzelpreis}%
+              {\scriptsize Gesamtpreis}
+    \@RCHinittrue
+  \fi
+}
+
+\newcommand*{\RechnungEnde}[0]
+{
+  \hrule
+  \vskip\doublerulesep\vskip0.4pt
+       \expandafter\if\@RCHtype X \@RCHohne
+  \else\expandafter\if\@RCHtype N \@RCHnetto
+  \else\expandafter\if\@RCHtype B \@RCHbrutto
+  \else\expandafter\if\@RCHtype K \@RCHkeineUST
+  \else\expandafter\if\@RCHtype E \@RCHeuUST
+  \else\PackageError{rechnung}{Unbekannter Rechnungstyp `\@RCHtype'}%
+  \fi\fi\fi\fi
+  \global\@RCHsum\@RCHsum\global\@RCHmwst\@RCHmwst
+  \vskip\belowdisplayskip
+}
+\endinput
+%%
+%% End of file `rechnungman.drv'.

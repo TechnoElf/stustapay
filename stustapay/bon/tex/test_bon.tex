@@ -1,0 +1,45 @@
+\documentclass[a4paper,12pt]{fseibrief}
+\usepackage{rechnung}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{eurosym}
+\usepackage{seqsplit}
+\usepackage{array}
+\usepackage{multirow}
+%\usepackage{draftwatermark} %Wasserzeichen
+
+%\SetWatermarkText{\Huge{KEINE RECHNUNG}}
+\begin{document}
+
+\subject{\bf Beleg 24-GEX-000000}
+\signature{}
+\Datum{\today}
+
+\begin{letter}{}
+
+\opening{}
+
+% [N] bei angabe von Nettopreisen, bei [B] wird der preis als brutto interpretiert
+\begin{Rechnung}[B] % ohne * gibt's keine Artielnummer
+\Euro
+\PositionAus
+\TrennerAus
+\Steuersatz{19}{0} % der erste ist der normale Steuersatz, der zweite der ermäßigte. Wenn die Rechnung nur 7% hat sieht es schöner aus wenn man es umdreht
+\EinzelpreisAus % dann wird der Preis als Gesamtpreis interpretiert und nicht mit der Anzahl multipliziert
+	\Artikel[]{1}{Bier}{10}
+\end{Rechnung}
+\begin{tabular}{|>{\raggedleft}p{0.1\linewidth}|p{0.6\linewidth}|>{\raggedleft}p{0.2\linewidth}|}
+	\hline
+	\small{Anzahl} & \small{Beschreibung} & \small{Gesamtpreis} \tabularnewline
+	\hline
+	1 & Bier & 10,00€ \tabularnewline
+	\hline
+	\hline
+	\multicolumn{2}{|l|}{Gesamtsumme} & \textbf{10,00€} \tabularnewline
+	\hline
+	\multicolumn{2}{|l|}{inkl. 19\% MwSt.} & 1,00€ \tabularnewline
+	\hline
+\end{tabular}
+
+\end{letter}
+\end{document}
