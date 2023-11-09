@@ -109,12 +109,7 @@ const injectedRtkApi = api
         invalidatesTags: ["tax-rates"],
       }),
       login: build.mutation<LoginApiResponse, LoginApiArg>({
-        query: (queryArg) => ({
-          url: `/auth/login`,
-          method: "POST",
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ 'username': queryArg.bodyLoginAuthLoginPost.username, 'password': queryArg.bodyLoginAuthLoginPost.password })
-        }),
+        query: (queryArg) => ({ url: `/auth/login`, method: "POST", body: queryArg.bodyLoginAuthLoginPost }),
         invalidatesTags: ["auth"],
       }),
       changePassword: build.mutation<ChangePasswordApiResponse, ChangePasswordApiArg>({

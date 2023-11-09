@@ -99,10 +99,10 @@
     <string name="vouchers_granted">%s Gutscheine ausgegeben</string>
     <string name="with_n_vouchers">mit %s Gutscheinen</string>
     <string name="free_ticket_activated">Kostenloses Ticket aktiviert</string>
-    <string name="grant_new_wristband">Neues Band ausgeben</string>
+    <string name="grant_new_wristband">Neue Karte ausgeben</string>
     <string name="voucher_amount">Gutscheinanzahl</string>
     <string name="vouchers">Gutscheine</string>
-    <string name="wristband">Bändchen</string>
+    <string name="wristband">Karte</string>
     <string name="grant">Verteilen</string>
     <string name="nfc_no_scan_active">Scan inaktiv.</string>
     <string name="nfc_waiting_for_tag">Warte auf Chip...</string>

@@ -393,7 +393,7 @@ class SumUp @Inject constructor(
             .currency(SumUpPayment.Currency.EUR)
             // optional: include a tip amount in addition to the total
             .tip(payment.tip)
-            .title("StuStaCulum 2023 ${payment.tag.toString()} ${payment.id}")
+            .title("Galeriefest 2023 ${payment.tag.toString()} ${payment.id}")
             //.receiptEmail("dummy@sft.lol") // todo: pre-set if the user has provided their email
             //.receiptSMS("+00000000000")
             .addAdditionalInfo("Terminal", cfg.terminal.name)

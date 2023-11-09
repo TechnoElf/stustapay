@@ -100,10 +100,10 @@
     <string name="vouchers_granted">%s Vouchers granted</string>
     <string name="with_n_vouchers">with %s vouchers</string>
     <string name="free_ticket_activated">Free ticket activated</string>
-    <string name="grant_new_wristband">Grant new wristband</string>
+    <string name="grant_new_wristband">Grant new card</string>
     <string name="voucher_amount">Voucher amount</string>
     <string name="vouchers">Vouchers</string>
-    <string name="wristband">Wristband</string>
+    <string name="wristband">Card</string>
     <string name="grant">Grant</string>
     <string name="nfc_no_scan_active">No scan active.</string>
     <string name="nfc_waiting_for_tag">Waiting for tag...</string>
