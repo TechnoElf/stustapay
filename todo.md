@@ -14,3 +14,4 @@ Fixes
 - Use bigint for tag uid (in generated api)
   - Actually, use a string or something because JS can't deal with large numbers in JSON apparently
 - Customer portal logout
+- Order with 0 items and no tax rate in order_tax_rates (2319)
