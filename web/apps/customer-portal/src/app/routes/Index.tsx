@@ -53,7 +53,7 @@ export const Index: React.FC = () => {
           >
             <Stack spacing={1}>
               <Typography component="div" variant="h4">
-                {formatCurrency(customer.balance)}
+                {formatCurrency(0.0)}
               </Typography>
 
               {customer.vouchers > 0 && (

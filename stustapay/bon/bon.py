@@ -46,14 +46,18 @@ async def generate_bon(conn: Connection, config: BonConfig, order_id: int, out_f
     if order is None:
         return False, "could not fetch order"
 
-    aggregations = await conn.fetch_many(
-        TaxRateAggregation,
-        "select tax_name, tax_rate, total_price, total_tax, total_no_tax "
-        "from order_tax_rates "
-        "where id = $1 "
-        "order by tax_rate",
-        order_id,
-    )
+    try:
+        aggregations = await conn.fetch_many(
+            TaxRateAggregation,
+            "select tax_name, tax_rate, total_price, total_tax, total_no_tax "
+            "from order_tax_rates "
+            "where id = $1 "
+            "order by tax_rate",
+            order_id,
+        )
+    except Exception:
+        return False, "could not fetch aggregated tax rates"
+
     if len(aggregations) == 0:
         return False, "could not fetch aggregated tax rates"
 

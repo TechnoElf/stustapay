@@ -1,7 +1,7 @@
 import React from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { Form, Formik, FormikHelpers } from "formik";
-import { Avatar, Box, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, CssBaseline, LinearProgress, TextField, Typography, Grid, Alert, AlertTitle } from "@mui/material";
 import { z } from "zod";
 import { selectIsAuthenticated, useAppSelector } from "@/store";
 import { LockOutlined as LockOutlinedIcon } from "@mui/icons-material";
@@ -28,6 +28,7 @@ export const Login: React.FC = () => {
   const isLoggedIn = useAppSelector(selectIsAuthenticated);
   const [query] = useSearchParams();
   const [login] = useLoginMutation();
+  const navigate = useNavigate();
 
   if (isLoggedIn) {
     const next = query.get("next");
@@ -51,6 +52,12 @@ export const Login: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="xs">
+      <Grid item xs={12} sm={8}>
+	<Alert severity="error" onClick={() => navigate("/agb")} sx={{ cursor: "pointer" }}>
+	  <AlertTitle>Keine Auszahlung mehr möglich</AlertTitle>
+	  Nach der Veranstaltung verfällt sämtliches Restguthaben auf der Karte
+	</Alert>
+      </Grid>
       <CssBaseline />
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Avatar sx={{ margin: 1, backgroundColor: "primary.main" }}>

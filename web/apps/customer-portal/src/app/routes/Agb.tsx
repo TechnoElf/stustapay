@@ -189,7 +189,7 @@ export const Agb = () => {
             das zu diesem Zeitpunkt auf der Karte/Armband vorhandene Guthaben abgefragt werden. Der Besucher hat jedoch
             keinen konkreten Anspruch, dieses zu einer bestimmten Zeit abzufragen.
           </li>
-          <li>Der Mindestaufladebetrag beträgt 1,00€, der Höchstbetrag des Chipguthabens 50,00€.</li>
+          <li>Der Mindestaufladebetrag beträgt 1,00€, der Höchstbetrag des Chipguthabens 55,00€.</li>
           <li>Die Guthabenbeträge sind Privatvermögen und werden nicht verzinst.</li>
         </ol>
         <h3 id="belege">Belege</h3>
@@ -214,7 +214,7 @@ export const Agb = () => {
         </ol>
         <h3 id="kartenpfand">Kartenpfand</h3>
         <ol type="1">
-          <li>Das Kartenpfand beträgt 2,- Euro.</li>
+          <li>Das Kartenpfand beträgt 0,- Euro.</li>
           <li>
             Der VERANSTALTER behält sich das Recht vor, Kartenpfand zu verlangen. Sofern ein Kartenpfand vorgesehen ist,
             wird der Betrag des Kartenpfandes bei dem ersten Top-Up auf der Karte/dem Armband gesperrt und erst bei
